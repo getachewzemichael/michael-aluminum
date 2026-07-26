@@ -31,6 +31,14 @@ def about(request):
     return render(request, 'core/about.html', context)
 
 
+from django.http import JsonResponse
+
+
+def health(request):
+    """Lightweight health check endpoint for uptime monitoring"""
+    return JsonResponse({'status': 'ok'})
+
+
 def terms(request):
     """Terms of Service page"""
     return render(request, 'core/terms.html')
