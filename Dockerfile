@@ -1,33 +1,25 @@
-# Use official Python runtime as base image
 FROM python:3.13-slim
 
-# Set environment variables
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
+# Dummy secret key only for collectstatic at build time
+ENV SECRET_KEY=build-time-dummy-key-not-used-in-production
+ENV DEBUG=False
+ENV ALLOWED_HOSTS=*
 
-# Set work directory
 WORKDIR /app
 
-# Install system dependencies
 RUN apt-get update && apt-get install -y \
     postgresql-client \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/exists/*
 
-# Copy requirements
 COPY requirements.txt .
+RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
 
-# Install Python dependencies
-RUN pip install --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt
-
-# Copy project
 COPY . .
 
-# Collect static files
 RUN python manage.py collectstatic --noinput
 
-# Expose port
-EXPOSE 8000
+EXPOSE 10000
 
-# Run gunicorn
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "4", "MichaelAluminum.wsgi:application"]
+CMD python manage.py migrate && gunicorn MichaelAluminum.wsgi:application --bind 0.0.0.0:${PORT:-10000} --workers 2 --timeout 120
