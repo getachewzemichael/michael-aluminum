@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="{% firstof request.LANGUAGE_CODE 'en' %}" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0A2E6F">
+    <meta name="description" content="{% block meta_description %}Michael Aluminum and Glass Technology - World-class architectural solutions{% endblock %}">
+    <meta name="keywords" content="{% block meta_keywords %}aluminum, glass, curtain wall, architectural{% endblock %}">
+
+    <title>{% block title %}Michael Aluminum and Glass Technology{% endblock %}</title>
+
+    <!-- Preconnect to speed up CDN connections -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+
+    <!-- Google Fonts — preload critical font only -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS — critical, keep blocking -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons — load async -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" media="print" onload="this.media='all'">
+
+    <!-- Font Awesome — load async -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    </noscript>
+
+    <!-- AOS — load async -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" media="print" onload="this.media='all'">
+
+    <!-- LightGallery — load async -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.0/css/lightgallery-bundle.min.css" media="print" onload="this.media='all'">
+
+    <!-- Swiper — load async -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11.0.0/swiper-bundle.min.css" media="print" onload="this.media='all'">
+
+    <!-- Custom CSS — critical, load blocking -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/theme.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/about.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+
+    <!-- Inline critical CSS — prevents FOUC before stylesheets load -->
+    <style>
+        body { margin: 0; font-family: 'Poppins', sans-serif; background: #F5F7FA; }
+        [data-theme="dark"] body { background: #0f1419; }
+        .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1030; min-height: 80px; background: #0A2E6F; }
+        main { padding-top: 0; }
+        .hero, .page-header { opacity: 1 !important; }
+        /* Prevent invisible text flash */
+        h1, h2, h3 { color: #0A2E6F; }
+        [data-theme="dark"] h1, [data-theme="dark"] h2, [data-theme="dark"] h3 { color: #90cdf4; }
+    </style>
+
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Skip to Content -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top glass-navbar">
+        <div class="container-lg">
+            <a class="navbar-brand" href="{% url 'core:home' %}">
+                <img src="{% static 'images/logo.jpg' %}" alt="Michael Aluminum Logo" class="logo-image">
+                <div class="brand-info">
+                    <div class="brand-name">Michael</div>
+                    <div class="brand-tagline">Aluminum & Glass Technology</div>
+                </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link {% if request.resolver_match.namespace == 'core' and request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'core:home' %}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link {% if request.resolver_match.namespace == 'core' and request.resolver_match.url_name == 'about' %}active{% endif %}" href="{% url 'core:about' %}">About</a></li>
+                    <li class="nav-item"><a class="nav-link {% if request.resolver_match.namespace == 'services' %}active{% endif %}" href="{% url 'services:list' %}">Services</a></li>
+                    <li class="nav-item"><a class="nav-link {% if request.resolver_match.namespace == 'projects' %}active{% endif %}" href="{% url 'projects:list' %}">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link {% if request.resolver_match.namespace == 'gallery' %}active{% endif %}" href="{% url 'gallery:list' %}">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link {% if request.resolver_match.namespace == 'blog' %}active{% endif %}" href="{% url 'blog:list' %}">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link {% if request.resolver_match.namespace == 'testimonials' %}active{% endif %}" href="{% url 'testimonials:list' %}">Testimonials</a></li>
+                    <li class="nav-item"><a class="nav-link {% if request.resolver_match.namespace == 'careers' %}active{% endif %}" href="{% url 'careers:list' %}">Careers</a></li>
+                    <li class="nav-item"><a class="nav-link {% if request.resolver_match.namespace == 'contact' %}active{% endif %}" href="{% url 'contact:contact' %}">Contact</a></li>
+                    <li class="nav-item">
+                        <button class="btn btn-sm btn-outline-primary" id="theme-toggle">
+                            <i class="bi bi-moon"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Spacer to offset fixed navbar -->
+    <div style="height: 100px;"></div>
+
+    <!-- Messages -->
+    {% if messages %}
+        <div class="container-lg mt-3">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <!-- Main Content -->
+    <main id="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container-lg px-4">
+
+            <!-- Top row -->
+            <div class="footer-top row g-4 pb-4">
+
+                <!-- Brand -->
+                <div class="col-12 col-md-6 col-lg-4 footer-brand-col" data-aos="fade-up" data-aos-delay="50">
+                    <div class="footer-brand">
+                        <div class="footer-logo-wrapper">
+                            <img src="{% static 'images/logo-nobg.png' %}" alt="Michael Aluminum Logo" class="footer-logo">
+                        </div>
+                        <div>
+                            <h5 class="footer-brand-name">Michael Aluminum</h5>
+                            <span class="footer-brand-tag">&amp; Glass Technology</span>
+                        </div>
+                    </div>
+                    <p class="footer-desc">Premium Aluminum &amp; Glass solutions — ኢትዮጵያ እና East Africa ውስጥ ለሚሰሩ ህንፃዎች future ን እየገነባን ነው።</p>
+                    <div class="footer-socials">
+                        <a href="#" class="footer-social-btn footer-social-fb" aria-label="Facebook" target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="footer-social-btn footer-social-ig" aria-label="Instagram" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="footer-social-btn footer-social-li" aria-label="LinkedIn" target="_blank">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="footer-social-btn footer-social-yt" aria-label="YouTube" target="_blank">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@michaelaluminum" class="footer-social-btn footer-social-tt" aria-label="TikTok" target="_blank">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        <a href="https://wa.me/251962294612" class="footer-social-btn footer-social-wa" aria-label="WhatsApp" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="col-6 col-md-3 col-lg-2" data-aos="fade-up" data-aos-delay="120">
+                    <h6 class="footer-heading">Quick Links</h6>
+                    <ul class="footer-links">
+                        <li><a href="{% url 'core:home' %}"><i class="bi bi-chevron-right"></i>Home</a></li>
+                        <li><a href="{% url 'core:about' %}"><i class="bi bi-chevron-right"></i>About</a></li>
+                        <li><a href="{% url 'services:list' %}"><i class="bi bi-chevron-right"></i>Services</a></li>
+                        <li><a href="{% url 'projects:list' %}"><i class="bi bi-chevron-right"></i>Projects</a></li>
+                    </ul>
+                </div>
+
+                <!-- Company -->
+                <div class="col-6 col-md-3 col-lg-2" data-aos="fade-up" data-aos-delay="190">
+                    <h6 class="footer-heading">Company</h6>
+                    <ul class="footer-links">
+                        <li><a href="{% url 'testimonials:list' %}"><i class="bi bi-chevron-right"></i>Testimonials</a></li>
+                        <li><a href="{% url 'careers:list' %}"><i class="bi bi-chevron-right"></i>Careers</a></li>
+                        <li><a href="{% url 'contact:contact' %}"><i class="bi bi-chevron-right"></i>Contact</a></li>
+                        <li><a href="{% url 'quotations:request' %}"><i class="bi bi-chevron-right"></i>Get a Quote</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="col-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="260">
+                    <h6 class="footer-heading">Get In Touch</h6>
+                    <ul class="footer-contact-list">
+                        <li>
+                            <a href="https://www.google.com/maps/place/Bole+Sub+City,+Addis+Ababa,+Ethiopia" target="_blank" class="footer-contact-link">
+                                <span class="footer-contact-icon footer-contact-icon--map"><i class="bi bi-geo-alt-fill"></i></span>
+                                <span>Bole Sub-City, Addis Ababa, Ethiopia</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="tel:+251962294612" class="footer-contact-link">
+                                <span class="footer-contact-icon footer-contact-icon--phone"><i class="bi bi-telephone-fill"></i></span>
+                                <span>+251-962-294-612</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailto:michaeltadessemiki@gmail.com" class="footer-contact-link">
+                                <span class="footer-contact-icon footer-contact-icon--email"><i class="bi bi-envelope-fill"></i></span>
+                                <span>michaeltadessemiki@gmail.com</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Divider -->
+            <div class="footer-divider"></div>
+
+            <!-- Bottom row -->
+            <div class="footer-bottom row align-items-center g-2 py-3">
+                <div class="col-12 col-md-6 text-center text-md-start">
+                    <p class="footer-copy">&copy; 2026 Michael Aluminum and Glass Technology. All rights reserved.</p>
+                </div>
+                <div class="col-12 col-md-6 text-center text-md-end">
+                    <a href="{% url 'core:terms' %}" class="footer-bottom-link me-3">Terms of Service</a>
+                    <a href="{% url 'core:privacy' %}" class="footer-bottom-link">Privacy Policy</a>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- Floating Action Buttons -->
+    <div class="floating-buttons">
+        <a href="https://www.tiktok.com/@michaelaluminum" class="tiktok-btn" aria-label="TikTok" target="_blank">
+            <i class="fab fa-tiktok"></i>
+        </a>
+        <a href="tel:+251962294612" class="call-btn" aria-label="Call Us">
+            <i class="bi bi-telephone"></i>
+        </a>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="btn-back-to-top" aria-label="Back to top" style="display: none;">
+        <i class="bi bi-chevron-up"></i>
+    </button>
+
+    <!-- Bootstrap JS — critical for navbar, load normally -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- All other JS — deferred, non-blocking -->
+    <script defer src="https://cdn.jsdelivr.net/npm/swiper@11.0.0/swiper-bundle.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.0/lightgallery.umd.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.0/plugins/zoom/lg-zoom.umd.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.0/plugins/share/lg-share.umd.js"></script>
+
+    <!-- Custom JS (defer) -->
+    {% load static %}
+    <script defer src="{% static 'js/main.js' %}"></script>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

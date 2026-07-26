@@ -1,0 +1,294 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home - Michael Aluminum and Glass Technology{% endblock %}
+{% block meta_description %}World-class architectural aluminum and glass solutions. Premium curtain walls, windows, and facades.{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="hero" id="hero">
+    <div class="container-lg px-4">
+        <div class="hero-content">
+            <h1 class="mb-4">
+                Transforming Buildings: Premium Aluminum &amp; Glass Solutions
+            </h1>
+            <p class="lead mb-5">
+                Michael Aluminum and Glass Technology: world-class architectural aluminum, curtain wall systems, frameless glass installations, stainless steel works እና customized facade solutions ለresidential፣ commercial እና industrial projects ያደርሳል።
+            </p>
+            <div class="hero-buttons">
+                <a href="{% url 'quotations:request' %}" class="btn btn-primary btn-lg">
+                    <i class="bi bi-pencil-square me-2"></i>Request Quotation
+                </a>
+                <a href="{% url 'projects:list' %}" class="btn btn-outline-primary btn-lg">
+                    <i class="bi bi-gallery me-2"></i>Our Projects
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Statistics Section -->
+<section class="statistics-section py-3">
+    <div class="container-lg px-4">
+        <div class="row g-4">
+            {% for stat in statistics %}
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|stringformat:'d'|add:'100' }}">
+                <div class="stat-card glass">
+                    <div class="stat-number">{{ stat.value }}</div>
+                    <div class="stat-label">{{ stat.title }}</div>
+                    <p class="text-muted small mt-2">{{ stat.description }}</p>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                <div class="stat-card glass">
+                    <div class="stat-number">30+</div>
+                    <div class="stat-label">Projects</div>
+                    <p class="text-muted small mt-2">ኢትዮጵያ ውስጥ completed projects</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                <div class="stat-card glass">
+                    <div class="stat-number">25+</div>
+                    <div class="stat-label">Happy Clients</div>
+                    <p class="text-muted small mt-2">Satisfied customers nationwide</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                <div class="stat-card glass">
+                    <div class="stat-number">5+</div>
+                    <div class="stat-label">Years</div>
+                    <p class="text-muted small mt-2">Expert craftsmanship ልምድ</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
+                <div class="stat-card glass">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">Specialisations</div>
+                    <p class="text-muted small mt-2">Aluminum, glass, steel &amp; more</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="section py-4" id="services">
+    <div class="container-lg px-4">
+        <div class="section-title" data-aos="fade-up">
+            <h2>Our Services</h2>
+            <p class="text-muted mt-3">Architectural needs ን ለማሟላት world-class solutions እናቀርባለን</p>
+        </div>
+        
+        <div class="row g-4">
+            {% for service in services %}
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|stringformat:'d'|add:'100' }}">
+                <a href="{% url 'services:detail' service.slug %}" class="text-decoration-none">
+                    <div class="service-card h-100">
+                        <div class="service-card-img-wrapper">
+                            {% if service.image %}
+                            <img src="{{ service.image.url }}" alt="{{ service.title }}" class="service-card-img">
+                            {% endif %}
+                            <div class="service-card-icon-badge">
+                                <i class="{{ service.icon }}"></i>
+                            </div>
+                        </div>
+                        <div class="service-card-body">
+                            <h4 class="service-title">{{ service.title }}</h4>
+                            <p class="service-description">{{ service.short_description }}</p>
+                            <span class="service-link">
+                                Learn More <i class="bi bi-arrow-right ms-1"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="text-center mt-5" data-aos="fade-up">
+            <a href="{% url 'services:list' %}" class="btn btn-primary btn-lg">
+                View All Services <i class="bi bi-arrow-right ms-2"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Projects Section -->
+<section class="section py-4 bg-light" id="featured-projects">
+    <div class="container-lg px-4">
+        <div class="section-title" data-aos="fade-up">
+            <h2>Featured Projects</h2>
+            <p class="text-muted mt-3">በኢትዮጵያ ካጠናቀቅናቸው exceptional projects ውስጥ</p>
+        </div>
+        
+        <div class="row g-4">
+            {% for project in projects %}
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|stringformat:'d'|add:'100' }}">
+                <a href="{% url 'projects:detail' project.slug %}" class="project-card text-decoration-none">
+                    {% if project.featured_image %}
+                    <img src="{{ project.featured_image.url }}" alt="{{ project.title }}" class="project-image">
+                    {% endif %}
+                    <div class="project-title-bar">
+                        {% if project.category %}
+                        <span class="project-category-tag">{{ project.category.name }}</span>
+                        {% endif %}
+                        <h3 class="project-title-text">{{ project.title }}</h3>
+                        <p class="project-location mb-0">
+                            <i class="bi bi-geo-alt me-1"></i>{{ project.location }}
+                        </p>
+                    </div>
+                    <div class="project-overlay">
+                        <div class="project-info">
+                            <span class="view-project-btn"><i class="bi bi-eye me-2"></i>View Project</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="text-center mt-5" data-aos="fade-up">
+            <a href="{% url 'projects:list' %}" class="btn btn-primary btn-lg">
+                View All Projects<i class="bi bi-arrow-right ms-2"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Us Section -->
+<section class="section py-4" id="why-choose-us">
+    <div class="container-lg px-4">
+        <div class="section-title" data-aos="fade-up">
+            <h2>Why Choose Us</h2>
+            <p class="text-muted mt-3">Excellence</p>
+        </div>
+        
+        <div class="row g-4">
+            {% for item in why_choose_us %}
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|stringformat:"d"|add:"100" }}">
+                <div class="glass-card">
+                    <div class="mb-3" style="font-size: 2.5rem; color: #2D9CDB;">
+                        <i class="fas {{ item.icon }}"></i>
+                    </div>
+                    <h5>{{ item.title }}</h5>
+                    <p class="text-muted mb-0">{{ item.description }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="section py-4" id="testimonials" style="background: linear-gradient(135deg, #0A2E6F 0%, #174EA6 60%, #2D9CDB 100%);">
+    <div class="container-lg px-4">
+        <div class="section-title" data-aos="fade-up">
+            <h2 style="color:#ffffff; -webkit-text-fill-color:#ffffff;">Client Testimonials</h2>
+            <p style="color:rgba(255,255,255,0.8);">Satisfied clients ያሏቸውን ይስሙ - hear from those we served</p>
+        </div>
+
+        <div class="swiper testimonials-swiper" data-aos="fade-up">
+            <div class="swiper-wrapper">
+                {% for testimonial in testimonials %}
+                <div class="swiper-slide">
+                    <div class="testimonial-card-home">
+                        {% if testimonial.client_photo %}
+                        <img src="{{ testimonial.client_photo.url }}" alt="{{ testimonial.client_name }}" class="tcard-avatar">
+                        {% else %}
+                        <div class="tcard-avatar tcard-avatar--fallback">
+                            <i class="bi bi-person-fill"></i>
+                        </div>
+                        {% endif %}
+                        <div class="tcard-stars">
+                            {% for i in "x"|rjust:testimonial.rating %}
+                            <i class="bi bi-star-fill"></i>
+                            {% endfor %}
+                        </div>
+                        <p class="tcard-text">"{{ testimonial.review }}"</p>
+                        <p class="tcard-name">{{ testimonial.client_name }}</p>
+                        <p class="tcard-company">{{ testimonial.client_company }}</p>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="swiper-slide">
+                    <div class="testimonial-card-home">
+                        <div class="tcard-avatar tcard-avatar--fallback"><i class="bi bi-person-fill"></i></div>
+                        <div class="tcard-stars">
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                        </div>
+                        <p class="tcard-text">"Michael Aluminum outstanding quality deliver አድርጓል — highly professional team ነው።"</p>
+                        <p class="tcard-name">Abebe Girma</p>
+                        <p class="tcard-company">Girma Construction, Addis Ababa</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Latest Blog Posts Section -->
+<section class="section py-5" id="blog">
+    <div class="container-lg px-4">
+        <div class="section-title" data-aos="fade-up">
+            <h2>Latest Blog Posts</h2>
+            <p class="text-muted mt-3">Industry insights እና updates</p>
+        </div>
+        
+        <div class="row g-4">
+            {% for post in blog_posts %}
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|stringformat:"d"|add:"100" }}">
+                <a href="{% url 'blog:detail' post.slug %}" class="text-decoration-none">
+                    <div class="glass-card h-100">
+                        {% if post.featured_image %}
+                        <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" class="img-fluid rounded mb-3" style="height: 200px; object-fit: cover; width: 100%;">
+                        {% endif %}
+                        
+                        <p class="text-accent small mb-2">
+                            <i class="bi bi-tag me-1"></i>{{ post.category.name }}
+                        </p>
+                        
+                        <h5 class="mb-2">{{ post.title }}</h5>
+                        
+                        <p class="text-muted small mb-3">{{ post.excerpt }}</p>
+                        
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">
+                                <i class="bi bi-calendar me-1"></i>{{ post.published_at|date:"M d, Y" }}
+                            </small>
+                            <small class="text-accent">
+                                <i class="bi bi-eye me-1"></i>{{ post.views_count }}
+                            </small>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="text-center mt-5" data-aos="fade-up">
+            <a href="{% url 'blog:list' %}" class="btn btn-primary btn-lg">
+                Read More Articles<i class="bi bi-arrow-right ms-2"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="section py-5" id="cta" style="background: var(--gradient-primary);">
+    <div class="container-lg px-4 text-center text-white" data-aos="fade-up">
+        <h2 class="mb-4" style="color: white;">Project ን ለመለወጥ ዝግጁ ነዎት?</h2>
+        <p class="lead mb-5">Expert team ን ይጠቀሙ — free quotation ዛሬ ያግኙ</p>
+        <a href="{% url 'quotations:request' %}" class="btn btn-light btn-lg">
+            <i class="bi bi-pencil-square me-2"></i>Request Quote
+        </a>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,288 @@
+/* ============================================================
+   FOOTER — Animated, professional, fully responsive
+   ============================================================ */
+
+.site-footer {
+    background: linear-gradient(160deg, #061D4D 0%, #0A2E6F 50%, #0d3580 100%);
+    color: rgba(255,255,255,0.85);
+    padding-top: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle animated background pattern */
+.site-footer::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 350px; height: 350px;
+    background: radial-gradient(circle, rgba(45,156,219,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: footerGlow 6s ease-in-out infinite;
+    pointer-events: none;
+}
+.site-footer::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: -60px;
+    width: 280px; height: 280px;
+    background: radial-gradient(circle, rgba(45,156,219,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: footerGlow 8s ease-in-out infinite reverse;
+    pointer-events: none;
+}
+@keyframes footerGlow {
+    0%, 100% { transform: scale(1) translate(0,0); opacity: 0.7; }
+    50%       { transform: scale(1.15) translate(10px,-10px); opacity: 1; }
+}
+
+/* ── Brand col ── */
+.footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.footer-logo-wrapper {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    background: #ffffff;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3px;
+    flex-shrink: 0;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.footer-logo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: none;
+    opacity: 1;
+}
+
+.footer-brand-name {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.footer-brand-tag {
+    font-size: 0.7rem;
+    color: #2D9CDB;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.footer-desc {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+}
+
+/* Social buttons */
+.footer-socials {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.footer-social-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    color: white;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
+}
+
+.footer-social-btn:hover {
+    transform: translateY(-4px) scale(1.12);
+    color: white;
+}
+
+.footer-social-fb:hover  { background: #1877f2; box-shadow: 0 6px 16px rgba(24,119,242,0.4); }
+.footer-social-ig:hover  { background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); box-shadow: 0 6px 16px rgba(220,39,67,0.4); }
+.footer-social-li:hover  { background: #0a66c2; box-shadow: 0 6px 16px rgba(10,102,194,0.4); }
+.footer-social-yt:hover  { background: #ff0000; box-shadow: 0 6px 16px rgba(255,0,0,0.4); }
+.footer-social-tt:hover  { background: #010101; box-shadow: 0 6px 16px rgba(1,1,1,0.5); }
+.footer-social-wa:hover  { background: #25d366; box-shadow: 0 6px 16px rgba(37,211,102,0.4); }
+
+/* ── Headings ── */
+.footer-heading {
+    font-size: 0.78rem !important;
+    font-weight: 700 !important;
+    color: #2D9CDB !important;
+    -webkit-text-fill-color: #2D9CDB !important;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 1rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.footer-heading::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 24px; height: 2px;
+    background: #2D9CDB;
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+.footer-brand-col:hover .footer-heading::after,
+div:hover > .footer-heading::after {
+    width: 40px;
+}
+
+/* ── Link lists ── */
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 0.45rem;
+    transform: translateX(0);
+    transition: transform 0.3s ease;
+}
+
+.footer-links li:hover {
+    transform: translateX(4px);
+}
+
+.footer-links a {
+    color: rgba(255,255,255,0.65) !important;
+    -webkit-text-fill-color: rgba(255,255,255,0.65) !important;
+    text-decoration: none;
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: color 0.25s ease;
+}
+
+.footer-links a i {
+    font-size: 0.6rem;
+    color: #2D9CDB;
+    transition: transform 0.25s ease;
+    flex-shrink: 0;
+}
+
+.footer-links a:hover {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+}
+
+.footer-links a:hover i {
+    transform: translateX(3px);
+}
+
+/* ── Contact list — compact single-line style ── */
+.footer-contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.footer-contact-link {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+    color: rgba(255,255,255,0.7) !important;
+    -webkit-text-fill-color: rgba(255,255,255,0.7) !important;
+    font-size: 0.82rem;
+    line-height: 1.4;
+    transition: color 0.25s ease, transform 0.25s ease;
+    padding: 0.3rem 0.5rem;
+    border-radius: 0.4rem;
+}
+
+.footer-contact-link:hover {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    background: rgba(255,255,255,0.06);
+    transform: translateX(3px);
+}
+
+.footer-contact-link strong {
+    display: none;
+}
+
+.footer-contact-icon {
+    width: 26px;
+    height: 26px;
+    min-width: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.72rem;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+.footer-contact-link:hover .footer-contact-icon {
+    transform: scale(1.15);
+}
+
+.footer-contact-icon--map   { background: rgba(45,156,219,0.2); color: #2D9CDB; }
+.footer-contact-icon--phone { background: rgba(37,211,102,0.2); color: #25d366; }
+.footer-contact-icon--email { background: rgba(255,184,0,0.2);  color: #FFB800; }
+.footer-contact-icon--tiktok{ background: rgba(255,255,255,0.1); color: #ffffff; }
+
+/* ── Divider ── */
+.footer-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(45,156,219,0.4), transparent);
+    margin: 0.5rem 0;
+}
+
+/* ── Bottom row ── */
+.footer-copy {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.45);
+    margin: 0;
+}
+
+.footer-bottom-link {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.45) !important;
+    -webkit-text-fill-color: rgba(255,255,255,0.45) !important;
+    text-decoration: none;
+    transition: color 0.25s ease;
+}
+
+.footer-bottom-link:hover {
+    color: #2D9CDB !important;
+    -webkit-text-fill-color: #2D9CDB !important;
+}
+
+/* ── Responsive ── */
+@media (max-width: 767px) {
+    .site-footer { padding-top: 2.5rem; }
+    .footer-socials { gap: 0.4rem; }
+    .footer-social-btn { width: 32px; height: 32px; font-size: 0.78rem; }
+    .footer-contact-list { gap: 0.5rem; }
+}

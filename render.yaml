@@ -1,0 +1,42 @@
+databases:
+  - name: michael-aluminum-db
+    databaseName: michael_aluminum
+    user: michael_aluminum
+    plan: free
+
+services:
+  - type: web
+    name: michael-aluminum
+    runtime: python
+    buildCommand: ./build.sh
+    startCommand: gunicorn MichaelAluminum.wsgi:application --bind 0.0.0.0:$PORT --workers 2 --timeout 120
+    plan: free
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.13.0
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: false
+      - key: ALLOWED_HOSTS
+        value: .onrender.com
+      - key: CSRF_TRUSTED_ORIGINS
+        value: https://michael-aluminum.onrender.com
+      - key: CORS_ALLOWED_ORIGINS
+        value: https://michael-aluminum.onrender.com
+      - key: DATABASE_URL
+        fromDatabase:
+          name: michael-aluminum-db
+          property: connectionString
+      - key: EMAIL_BACKEND
+        value: django.core.mail.backends.smtp.EmailBackend
+      - key: EMAIL_HOST
+        value: smtp.gmail.com
+      - key: EMAIL_PORT
+        value: 587
+      - key: EMAIL_USE_TLS
+        value: true
+      - key: EMAIL_HOST_USER
+        sync: false
+      - key: EMAIL_HOST_PASSWORD
+        sync: false

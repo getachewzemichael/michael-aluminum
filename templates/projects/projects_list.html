@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Projects - Michael Aluminum and Glass Technology{% endblock %}
+
+{% block content %}
+
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container-lg px-4">
+        <div class="row align-items-center">
+            <div class="col-lg-8" data-aos="fade-up">
+                <h1>Our Projects</h1>
+                <p class="lead">Showcasing our exceptional work across industries</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Projects Section -->
+<section class="section py-4">
+    <div class="container-lg px-4">
+        <!-- Filters -->
+        <div class="row mb-5 project-filters">
+            <div class="col-lg-8" data-aos="fade-up">
+                <div class="btn-group flex-wrap" role="group">
+                    <a href="{% url 'projects:list' %}" class="btn btn-outline-primary {% if not selected_category %}active{% endif %}">
+                        All
+                    </a>
+                    {% for category in categories %}
+                    <a href="?category={{ category.slug }}" class="btn btn-outline-primary {% if selected_category == category.slug %}active{% endif %}">
+                        {{ category.name }}
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <div class="col-lg-4" data-aos="fade-up">
+                <form method="get" class="search-box">
+                    {% if selected_category %}
+                    <input type="hidden" name="category" value="{{ selected_category }}">
+                    {% endif %}
+                    <i class="bi bi-search"></i>
+                    <input type="search" name="q" placeholder="Search projects..." value="{{ search_query }}" class="form-control">
+                </form>
+            </div>
+        </div>
+        
+        <!-- Projects Grid -->
+        <div class="row g-4">
+            {% for project in projects %}
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|stringformat:"d"|add:"100" }}">
+                <a href="{% url 'projects:detail' project.slug %}" class="project-card text-decoration-none">
+                    {% if project.featured_image %}
+                    <img src="{{ project.featured_image.url }}" alt="{{ project.title }}" class="project-image">
+                    {% endif %}
+                    <!-- Always-visible title bar at bottom -->
+                    <div class="project-title-bar">
+                        {% if project.category %}
+                        <span class="project-category-tag">{{ project.category.name }}</span>
+                        {% endif %}
+                        <h3 class="project-title-text">{{ project.title }}</h3>
+                        <p class="project-location mb-0">
+                            <i class="bi bi-geo-alt me-1"></i>{{ project.location }}
+                        </p>
+                    </div>
+                    <!-- Hover overlay with more info -->
+                    <div class="project-overlay">
+                        <div class="project-info">
+                            <span class="view-project-btn"><i class="bi bi-eye me-2"></i>View Project</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <div class="alert alert-info text-center">
+                    No projects found. Please try a different filter or search term.
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="section py-5" style="background: var(--gradient-primary);">
+    <div class="container-lg px-4 text-center text-white" data-aos="fade-up">
+        <h2 class="mb-4" style="color: white;">Have a Similar Project?</h2>
+        <p class="lead mb-5">Let's discuss your requirements and create something exceptional</p>
+        <a href="{% url 'quotations:request' %}" class="btn btn-light btn-lg">
+            <i class="bi bi-pencil-square me-2"></i>Request Quote
+        </a>
+    </div>
+</section>
+
+{% endblock %}

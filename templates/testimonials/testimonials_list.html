@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Testimonials - Michael Aluminum and Glass Technology{% endblock %}
+
+{% block content %}
+
+<!-- Page Header -->
+<section class="hero" style="min-height: 40vh;">
+    <div class="container-lg px-4">
+        <div class="hero-content" data-aos="fade-up">
+            <h1>Client Testimonials</h1>
+            <p class="lead">What our clients say about us</p>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Testimonials -->
+{% if featured_testimonials %}
+<section class="section py-5 parallax" style="background: linear-gradient(135deg, rgba(10, 46, 111, 0.05) 0%, rgba(45, 156, 219, 0.05) 100%);">
+    <div class="container-lg px-4">
+        <h3 class="mb-4 text-center" data-aos="fade-up">Featured Reviews</h3>
+        
+        <div class="swiper testimonials-swiper" data-aos="fade-up">
+            <div class="swiper-wrapper">
+                {% for testimonial in featured_testimonials %}
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        {% if testimonial.client_photo %}
+                        <img src="{{ testimonial.client_photo.url }}" alt="{{ testimonial.client_name }}" class="testimonial-avatar">
+                        {% else %}
+                        <div class="testimonial-avatar bg-secondary d-flex align-items-center justify-content-center" style="font-size: 2rem; color: white;">
+                            <i class="bi bi-person"></i>
+                        </div>
+                        {% endif %}
+                        
+                        <p class="testimonial-text">{{ testimonial.review }}</p>
+                        
+                        <div class="stars">
+                            {% for i in "x"|rjust:testimonial.rating %}
+                            <i class="bi bi-star-fill"></i>
+                            {% endfor %}
+                        </div>
+                        
+                        <p class="testimonial-client">{{ testimonial.client_name }}</p>
+                        <p class="testimonial-company">{{ testimonial.client_company }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- All Testimonials -->
+<section class="section py-5">
+    <div class="container-lg px-4">
+        <h3 class="mb-4 text-center" data-aos="fade-up">All Client Reviews</h3>
+        
+        <div class="row g-4">
+            {% for testimonial in testimonials %}
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|stringformat:"d"|add:"100" }}">
+                <div class="testimonial-card">
+                    {% if testimonial.client_photo %}
+                    <img src="{{ testimonial.client_photo.url }}" alt="{{ testimonial.client_name }}" class="testimonial-avatar">
+                    {% else %}
+                    <div class="testimonial-avatar bg-secondary d-flex align-items-center justify-content-center" style="font-size: 2rem; color: white;">
+                        <i class="bi bi-person"></i>
+                    </div>
+                    {% endif %}
+                    
+                    <p class="testimonial-text">{{ testimonial.review }}</p>
+                    
+                    <div class="stars">
+                        {% for i in "x"|rjust:testimonial.rating %}
+                        <i class="bi bi-star-fill"></i>
+                        {% endfor %}
+                    </div>
+                    
+                    <p class="testimonial-client">{{ testimonial.client_name }}</p>
+                    <p class="testimonial-company">{{ testimonial.client_company }}</p>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <div class="alert alert-info text-center">
+                    No testimonials available at this time.
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="section py-5" style="background: var(--gradient-primary);">
+    <div class="container-lg px-4 text-center text-white" data-aos="fade-up">
+        <h2 class="mb-4" style="color: white;">Ready to Experience Our Excellence?</h2>
+        <p class="lead mb-5">Join our satisfied clients and transform your project</p>
+        <a href="{% url 'quotations:request' %}" class="btn btn-light btn-lg">
+            <i class="bi bi-pencil-square me-2"></i>Request Quote
+        </a>
+    </div>
+</section>
+
+{% endblock %}

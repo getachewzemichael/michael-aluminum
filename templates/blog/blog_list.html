@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Blog - Michael Aluminum and Glass Technology{% endblock %}
+
+{% block content %}
+
+<!-- Page Header -->
+<section class="hero" style="min-height: 40vh;">
+    <div class="container-lg px-4">
+        <div class="hero-content" data-aos="fade-up">
+            <h1>Blog</h1>
+            <p class="lead">Industry insights and updates</p>
+        </div>
+    </div>
+</section>
+
+<!-- Blog Section -->
+<section class="section py-5">
+    <div class="container-lg px-4">
+        <div class="row g-5">
+            <!-- Main Content -->
+            <div class="col-lg-8" data-aos="fade-right">
+                {% if posts %}
+                <div class="row g-4">
+                    {% for post in posts %}
+                    <div class="col-12 col-md-6">
+                        <a href="{% url 'blog:detail' post.slug %}" class="text-decoration-none">
+                            <div class="glass-card h-100">
+                                {% if post.featured_image %}
+                                <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" class="img-fluid rounded mb-3" style="height: 200px; object-fit: cover; width: 100%;">
+                                {% endif %}
+                                
+                                <p class="text-accent small mb-2">
+                                    <i class="bi bi-tag me-1"></i>{{ post.category.name }}
+                                </p>
+                                
+                                <h5 class="mb-2">{{ post.title }}</h5>
+                                
+                                <p class="text-muted small mb-3">{{ post.excerpt }}</p>
+                                
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <small class="text-muted">
+                                        <i class="bi bi-calendar me-1"></i>{{ post.published_at|date:"M d, Y" }}
+                                    </small>
+                                    <small class="text-accent">
+                                        <i class="bi bi-eye me-1"></i>{{ post.views_count }}
+                                    </small>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="alert alert-info">
+                    No blog posts found matching your criteria.
+                </div>
+                {% endif %}
+            </div>
+            
+            <!-- Sidebar -->
+            <div class="col-lg-4" data-aos="fade-left">
+                <!-- Search -->
+                <div class="glass-card mb-4">
+                    <form method="get" class="d-flex gap-2">
+                        <input type="search" name="q" placeholder="Search..." value="{{ search_query }}" class="form-control">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Categories -->
+                {% if categories %}
+                <div class="glass-card mb-4">
+                    <h6 class="mb-3">Categories</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <a href="{% url 'blog:list' %}" class="text-decoration-none">
+                                All Categories
+                            </a>
+                        </li>
+                        {% for cat in categories %}
+                        <li class="mb-2">
+                            <a href="?category={{ cat.slug }}" class="text-decoration-none {% if selected_category == cat.slug %}text-primary fw-600{% endif %}">
+                                {{ cat.name }}
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,402 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About Us - Michael Aluminum and Glass Technology{% endblock %}
+{% block meta_description %}Learn about Michael Aluminum and Glass Technology — our story, mission, values, and how we deliver world-class aluminum and glass solutions in Ethiopia.{% endblock %}
+
+{% block content %}
+
+<!-- ══════════════════════════════════════════
+     HERO SECTION
+══════════════════════════════════════════ -->
+<section class="page-header">
+    <div class="container-lg px-4">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-7" data-aos="fade-right">
+                <h1>About Us</h1>
+                <p class="lead">Delivering premium aluminum, glass, and stainless steel solutions with integrity and craftsmanship for every project.</p>
+                <div class="d-flex gap-3 mt-4 flex-wrap">
+                    <a href="{% url 'quotations:request' %}" class="btn btn-primary btn-lg">
+                        <i class="bi bi-pencil-square me-2"></i>Request Quote
+                    </a>
+                    <a href="{% url 'contact:contact' %}" class="btn btn-outline-primary btn-lg">
+                        <i class="bi bi-telephone me-2"></i>Contact Us
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-5 text-center" data-aos="fade-left" data-aos-delay="100">
+                <div class="position-relative d-inline-block w-100">
+                    <img src="{% static 'images/about-company.jpg' %}"
+                         alt="Michael Aluminum Workshop"
+                         class="img-fluid rounded-3 shadow-lg"
+                         style="max-height:340px; object-fit:cover; width:100%;">
+                    <div class="ab-story-img-badge">
+                        <span class="fw-bold fs-4">5+</span>
+                        <span class="small">Years of<br>Excellence</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     OUR STORY
+══════════════════════════════════════════ -->
+<section class="ab-section">
+    <div class="container-lg px-4">
+        <div class="section-title" data-aos="fade-up">
+            <h2>Our Story</h2>
+            <p>Founded on a passion for quality</p>
+        </div>
+
+        <div class="row g-4 align-items-stretch">
+            <!-- Who We Are + Founder -->
+            <div class="col-12 col-lg-6" data-aos="fade-right">
+                <div class="ab-story-card ab-story-card--blue h-100">
+                    <div class="ab-story-card__header">
+                        <i class="bi bi-building-fill-check ab-story-card__icon"></i>
+                        <h4>Who We Are</h4>
+                    </div>
+
+                    <!-- Founder -->
+                    <div class="ab-founder">
+                        <div class="ab-founder__photo-ring">
+                            <img src="{% static 'images/founder.jpg' %}"
+                                 alt="Michael Tadesse — Founder"
+                                 class="ab-founder__photo"
+                                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                            <div class="ab-founder__initials">MT</div>
+                        </div>
+                        <div class="ab-founder__info">
+                            <strong class="ab-founder__name">Michael Tadesse</strong>
+                            <span class="ab-founder__role">Founder &amp; CEO</span>
+                            <div class="ab-founder__socials">
+                                <a href="https://www.tiktok.com/@michaelaluminum" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                                <a href="https://wa.me/251962294612" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="ab-story-card__text">
+                        Michael Aluminum and Glass Technology<strong>ሚካኤል ታደሰ</strong> በሚባሉ የብዙ ዓመታት experience ያላቸው expert ባለሙያ የተመሰረተ ድርጅት ነው።
+                    </p>
+                    <p class="ab-story-card__text">
+                        የኛ skilled engineers በቅንጅት እየሰሩ high quality finishing works ያደርሳሉ, ብዙ clients የስራዎቻቸውን ጥራት የመሰከሩ ሲሆን አሁንም በኢትዮጵያ ውስጥ ለሚሰሩ ህንፃዎች premium facade solutions እናቀርባለን።
+                    </p>
+                    <p class="ab-story-card__text mb-0">
+                        Quality፣ integrity እና craftsmanship, ህንፃዎችን ፊትለፊት ገፅታ ከፍ ባለ ደረጃ ለመስራት ያለን commitment ነው።
+                    </p>
+                </div>
+            </div>
+
+            <!-- Vision + Mission -->
+            <div class="col-12 col-lg-6" data-aos="fade-left" data-aos-delay="150">
+                <div class="row g-4 h-100">
+                    <div class="col-12">
+                        <div class="ab-story-card ab-story-card--gold">
+                            <div class="ab-story-card__header">
+                                <i class="bi bi-eye-fill ab-story-card__icon" style="color:#FFB800; font-size:1.6rem;"></i>
+                                <h4>Our Vision</h4>
+                            </div>
+                            <p class="ab-story-card__text mb-0">
+                                በምስራቅ አፍሪካ ውስጥ aluminum, glass እና stainless steel fabrication ላይ እጅግ trusted የሆነ company ለመሆን, generations ድረስ የሚቆዩ landmarks ለመስራት ያለን vision ነው።
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="ab-story-card ab-story-card--teal">
+                            <div class="ab-story-card__header">
+                                <i class="bi bi-bullseye ab-story-card__icon" style="color:#11998e; font-size:1.6rem;"></i>
+                                <h4>Our Mission</h4>
+                            </div>
+                            <p class="ab-story-card__text mb-0">
+                                ኢትዮጵያ ውስጥ aluminum, glass እና stainless steel solutions: integrity ጠብቀን highest quality ባለው መንገድ ለማቅረብ ነው ያለን mission። ሁሌም clients first እናደርጋለን, every project ላይ።
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     CORE VALUES
+══════════════════════════════════════════ -->
+<section class="ab-section ab-section--alt">
+    <div class="container-lg px-4">
+        <div class="section-title" data-aos="fade-up">
+            <h2>Our Core Values</h2>
+            <p>Every project ላይ የምንመራባቸው principles: the values that define who we are</p>
+        </div>
+
+        <div class="row g-3 g-md-4">
+            <div class="col-6 col-md-6 col-lg-3" data-aos="zoom-in" data-aos-delay="50">
+                <div class="ab-value-card ab-value-card--blue">
+                    <div class="ab-value-card__icon"><i class="bi bi-briefcase-fill"></i></div>
+                    <h5 class="ab-value-card__title">Professionalism — ሙያዊነት</h5>
+                    <p class="ab-value-card__text">በሙያ discipline እና ለእያንዳንዱ client ሙሉ respect ይዘን እንሰራለን።</p>
+                </div>
+            </div>
+            <div class="col-6 col-md-6 col-lg-3" data-aos="zoom-in" data-aos-delay="120">
+                <div class="ab-value-card ab-value-card--green">
+                    <div class="ab-value-card__icon"><i class="bi bi-shield-check"></i></div>
+                    <h5 class="ab-value-card__title">Integrity — ታማኝነት</h5>
+                    <p class="ab-value-card__text">ሁሉም commitment ላይ honesty እና transparency — ይህ ነው ያለን foundation።</p>
+                </div>
+            </div>
+            <div class="col-6 col-md-6 col-lg-3" data-aos="zoom-in" data-aos-delay="190">
+                <div class="ab-value-card ab-value-card--orange">
+                    <div class="ab-value-card__icon"><i class="bi bi-lightbulb-fill"></i></div>
+                    <h5 class="ab-value-card__title">Innovation — ፈጠራ</h5>
+                    <p class="ab-value-card__text">Modern techniques እና creative solutions ሁሌ እንጠቀማለን — ቆም አንልም።</p>
+                </div>
+            </div>
+            <div class="col-6 col-md-6 col-lg-3" data-aos="zoom-in" data-aos-delay="260">
+                <div class="ab-value-card ab-value-card--purple">
+                    <div class="ab-value-card__icon"><i class="bi bi-heart-fill"></i></div>
+                    <h5 class="ab-value-card__title">Client First — ደምበኛ ቅድሚያ</h5>
+                    <p class="ab-value-card__text">የደምበኛችን satisfaction — ያለን ultimate goal ይህ ነው። ሁሌም።</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     WHY CHOOSE US
+══════════════════════════════════════════ -->
+<section class="ab-section">
+    <div class="container-lg px-4">
+        <div class="section-title" data-aos="fade-up">
+            <h2>Why Choose Us — ለምን እኛን?</h2>
+            <p>Michael Aluminum ን ከሌሎች የሚለይ — what sets us apart</p>
+        </div>
+
+        <div class="row g-3 g-md-4">
+            <div class="col-12 col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="50">
+                <div class="ab-why-card ab-why-card--1">
+                    <div class="ab-why-card__top">
+                        <div class="ab-why-card__icon-wrap"><i class="bi bi-award-fill"></i></div>
+                        <h6 class="ab-why-card__title">Uncompromising Quality</h6>
+                    </div>
+                    <p class="ab-why-card__text">Material quality ወይም workmanship ላይ አንደራደርም — ምንም ዓይነት shortcut አንወስድም።</p>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="120">
+                <div class="ab-why-card ab-why-card--2">
+                    <div class="ab-why-card__top">
+                        <div class="ab-why-card__icon-wrap"><i class="bi bi-hand-thumbs-up-fill"></i></div>
+                        <h6 class="ab-why-card__title">Proven Reliability</h6>
+                    </div>
+                    <p class="ab-why-card__text">በመቶዎች የሚቆጠሩ satisfied clients track record ያረጋገጡት — ይህ ነው ያለን reliability።</p>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="190">
+                <div class="ab-why-card ab-why-card--3">
+                    <div class="ab-why-card__top">
+                        <div class="ab-why-card__icon-wrap"><i class="bi bi-gem"></i></div>
+                        <h6 class="ab-why-card__title">Premium Materials</h6>
+                    </div>
+                    <p class="ab-why-card__text">Top-grade aluminum, tempered glass እና stainless steel — ጥራቱ ከፍ ያለ material ብቻ እንጠቀማለን።</p>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="260">
+                <div class="ab-why-card ab-why-card--4">
+                    <div class="ab-why-card__top">
+                        <div class="ab-why-card__icon-wrap"><i class="bi bi-people-fill"></i></div>
+                        <h6 class="ab-why-card__title">Client-Centered</h6>
+                    </div>
+                    <p class="ab-why-card__text">Every project — client ን ያስደሰተ outcome ለማምጣት tailored approach እንወስዳለን።</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SERVICES OVERVIEW
+══════════════════════════════════════════ -->
+<section class="ab-section ab-section--alt">
+    <div class="container-lg px-4">
+        <div class="section-title" data-aos="fade-up">
+            <h2>Our Services</h2>
+            <p>Three specializations delivered with expert craftsmanship</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="50">
+                <div class="ab-service-card ab-service-card--blue h-100">
+                    <div class="ab-service-card__header">
+                        <div class="ab-service-card__icon"><i class="bi bi-box-seam"></i></div>
+                        <h5>Aluminum Works</h5>
+                    </div>
+                    <ul class="ab-service-card__list">
+                        <li><i class="bi bi-check2-circle"></i>Windows &amp; Doors (LTZ)</li>
+                        <li><i class="bi bi-check2-circle"></i>Curtain Wall Facade</li>
+                        <li><i class="bi bi-check2-circle"></i>ACP Cladding</li>
+                        <li><i class="bi bi-check2-circle"></i>Handrail Systems</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="130">
+                <div class="ab-service-card ab-service-card--teal h-100">
+                    <div class="ab-service-card__header">
+                        <div class="ab-service-card__icon"><i class="bi bi-columns-gap"></i></div>
+                        <h5>Glass Works</h5>
+                    </div>
+                    <ul class="ab-service-card__list">
+                        <li><i class="bi bi-check2-circle"></i>Frameless Glass Partition</li>
+                        <li><i class="bi bi-check2-circle"></i>Office Partition</li>
+                        <li><i class="bi bi-check2-circle"></i>Sky Light</li>
+                        <li><i class="bi bi-check2-circle"></i>Tempered Glass Handrails</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="210">
+                <div class="ab-service-card ab-service-card--steel h-100">
+                    <div class="ab-service-card__header">
+                        <div class="ab-service-card__icon"><i class="bi bi-gem"></i></div>
+                        <h5>Stainless Steel</h5>
+                    </div>
+                    <ul class="ab-service-card__list">
+                        <li><i class="bi bi-check2-circle"></i>SS Handrails</li>
+                        <li><i class="bi bi-check2-circle"></i>Stair Railing Systems</li>
+                        <li><i class="bi bi-check2-circle"></i>Grade 304 &amp; 316 Steel</li>
+                        <li><i class="bi bi-check2-circle"></i>Custom Fabrication</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-4" data-aos="fade-up" data-aos-delay="100">
+            <a href="{% url 'services:list' %}" class="btn btn-primary btn-lg">
+                <i class="bi bi-grid me-2"></i>Explore All Services
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     OUR PROCESS — timeline style
+══════════════════════════════════════════ -->
+<section class="ab-section">
+    <div class="container-lg px-4">
+        <div class="section-title" data-aos="fade-up">
+            <h2>Our Process — አሰራራችን</h2>
+            <p>Project ን concept ጀምሮ completion ድረስ እንዴት እናደርሰዋለን</p>
+        </div>
+
+        <div class="ab-process-grid">
+            {% for step in process_steps %}{% empty %}
+            <div class="ab-process-step" data-aos="fade-up" data-aos-delay="50">
+                <div class="ab-process-step__num">01</div>
+                <div class="ab-process-step__body">
+                    <h6>Consultation — ምክክር</h6>
+                    <p>Requirements ን እናዳምጣለን — client ን ያሳተፈ approach ይዘን expectations ን እናስተካክላለን።</p>
+                </div>
+            </div>
+            <div class="ab-process-step" data-aos="fade-up" data-aos-delay="100">
+                <div class="ab-process-step__num">02</div>
+                <div class="ab-process-step__body">
+                    <h6>Site Measurement — ልኬት</h6>
+                    <p>Precise on-site measurement — perfect fit ለማረጋገጥ ትክክለኛ ልኬት እንወስዳለን።</p>
+                </div>
+            </div>
+            <div class="ab-process-step" data-aos="fade-up" data-aos-delay="150">
+                <div class="ab-process-step__num">03</div>
+                <div class="ab-process-step__body">
+                    <h6>Design — ዲዛይን</h6>
+                    <p>የህንፃውን architecture እና client ን vision መሰረት ያደረገ right design እናዘጋጃለን።</p>
+                </div>
+            </div>
+            <div class="ab-process-step" data-aos="fade-up" data-aos-delay="200">
+                <div class="ab-process-step__num">04</div>
+                <div class="ab-process-step__body">
+                    <h6>Fabrication — ማምረት</h6>
+                    <p>Workshop ውስጥ top-grade materials ተጠቅመን precision ባለው manufacturing ሂደት እናከናውናለን።</p>
+                </div>
+            </div>
+            <div class="ab-process-step" data-aos="fade-up" data-aos-delay="250">
+                <div class="ab-process-step__num">05</div>
+                <div class="ab-process-step__body">
+                    <h6>Installation — ጭነት</h6>
+                    <p>Skilled team ን ይዘን on-site installation — minimum disruption፣ maximum precision።</p>
+                </div>
+            </div>
+            <div class="ab-process-step ab-process-step--final" data-aos="fade-up" data-aos-delay="300">
+                <div class="ab-process-step__num">06</div>
+                <div class="ab-process-step__body">
+                    <h6>Quality Inspection — ጥራት ምርመራ</h6>
+                    <p>Handover ከመሆኑ በፊት standards ን ያሟላ መሆኑን final inspection አናልፍም።</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     MATERIALS
+══════════════════════════════════════════ -->
+<section class="ab-section ab-section--alt">
+    <div class="container-lg px-4">
+        <div class="section-title" data-aos="fade-up">
+            <h2>Materials We Use — የምንጠቀማቸው ጥሬ ዕቃዎች</h2>
+            <p>Lasting quality ለማረጋገጥ highest grade materials ብቻ እንጠቀማለን</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-12 col-md-4" data-aos="flip-left" data-aos-delay="50">
+                <div class="ab-material-card ab-material-card--blue">
+                    <div class="ab-material-card__icon"><i class="bi bi-box-seam"></i></div>
+                    <h6>Aluminum — አሉሚኒየም</h6>
+                    <p>Corrosion-resistant፣ powder coated እና anodized profiles — ሁሉም weather condition ውስጥ long-lasting performance ያለው።</p>
+                </div>
+            </div>
+            <div class="col-12 col-md-4" data-aos="flip-left" data-aos-delay="150">
+                <div class="ab-material-card ab-material-card--teal">
+                    <div class="ab-material-card__icon"><i class="bi bi-grid-3x3"></i></div>
+                    <h6>Glass Types — የመስተዋት ዓይነቶች</h6>
+                    <ul>
+                        <li>Clear Glass — ግልፅ መስተዋት</li>
+                        <li>Tinted Glass — ቀለም ያለው</li>
+                        <li>Tempered Glass — ጠንካራ</li>
+                        <li>Laminated Glass — ንብርብር</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-12 col-md-4" data-aos="flip-left" data-aos-delay="250">
+                <div class="ab-material-card ab-material-card--steel">
+                    <div class="ab-material-card__icon"><i class="bi bi-gem"></i></div>
+                    <h6>Stainless Steel — ስቴንለስ ስቲል</h6>
+                    <p>Grade 304 እና 316 — rust-proof፣ polished፣ premium applications ላይ የሚሰራ ጥንካሬ ያለው material።</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     CTA
+══════════════════════════════════════════ -->
+<section class="ab-cta" data-aos="fade-up">
+    <div class="container-lg px-4 text-center py-4">
+        <h2 class="ab-cta__title">Ready to Start Your Project?</h2>
+        <p class="ab-cta__lead">Contact us today for a free consultation and quote.</p>
+        <div class="ab-cta__actions">
+            <a href="{% url 'contact:contact' %}" class="btn btn-light btn-lg">
+                <i class="bi bi-envelope me-2"></i>Contact Us
+            </a>
+            <a href="{% url 'quotations:request' %}" class="btn btn-outline-light btn-lg">
+                <i class="bi bi-pencil-square me-2"></i>Request Quote
+            </a>
+            <a href="{% url 'projects:list' %}" class="btn btn-outline-light btn-lg">
+                <i class="bi bi-images me-2"></i>Our Projects
+            </a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

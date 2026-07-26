@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Admin Dashboard - Michael Aluminum and Glass Technology{% endblock %}
+
+{% block content %}
+
+<!-- Page Header -->
+<section class="hero" style="min-height: 30vh;">
+    <div class="container-lg px-4">
+        <div class="hero-content" data-aos="fade-up">
+            <h1>Admin Dashboard</h1>
+            <p class="lead">Manage your website content</p>
+        </div>
+    </div>
+</section>
+
+<!-- Dashboard Content -->
+<section class="section py-5">
+    <div class="container-lg px-4">
+        <!-- Stats Overview -->
+        <div class="row mb-5 g-4">
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                <div class="glass-card">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <p class="text-muted small mb-1">Total Projects</p>
+                            <h3 class="mb-0">{{ total_projects }}</h3>
+                        </div>
+                        <div style="font-size: 2.5rem; color: #2D9CDB; opacity: 0.5;">
+                            <i class="bi bi-briefcase"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                <div class="glass-card">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <p class="text-muted small mb-1">Services</p>
+                            <h3 class="mb-0">{{ total_services }}</h3>
+                        </div>
+                        <div style="font-size: 2.5rem; color: #2D9CDB; opacity: 0.5;">
+                            <i class="bi bi-gear"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                <div class="glass-card">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <p class="text-muted small mb-1">Blog Posts</p>
+                            <h3 class="mb-0">{{ published_posts }}</h3>
+                        </div>
+                        <div style="font-size: 2.5rem; color: #2D9CDB; opacity: 0.5;">
+                            <i class="bi bi-file-text"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
+                <div class="glass-card">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <p class="text-muted small mb-1">Testimonials</p>
+                            <h3 class="mb-0">{{ total_testimonials }}</h3>
+                        </div>
+                        <div style="font-size: 2.5rem; color: #2D9CDB; opacity: 0.5;">
+                            <i class="bi bi-chat-quote"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Action Items -->
+        <div class="row g-4">
+            <!-- Pending Quotations -->
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="glass-card">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="mb-0">Pending Quotations</h5>
+                        <span class="badge bg-warning">{{ pending_quotations }}</span>
+                    </div>
+                    <p class="text-muted small">
+                        <i class="bi bi-info-circle me-2"></i>
+                        Review and respond to quotation requests
+                    </p>
+                    <a href="/admin/quotations/quotation/" class="btn btn-sm btn-primary mt-2">
+                        Manage <i class="bi bi-arrow-right ms-1"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- New Messages -->
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="glass-card">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="mb-0">New Messages</h5>
+                        <span class="badge bg-danger">{{ new_messages }}</span>
+                    </div>
+                    <p class="text-muted small">
+                        <i class="bi bi-info-circle me-2"></i>
+                        Respond to contact form submissions
+                    </p>
+                    <a href="/admin/contact/contactmessage/" class="btn btn-sm btn-primary mt-2">
+                        Manage <i class="bi bi-arrow-right ms-1"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Pending Applications -->
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="glass-card">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="mb-0">Job Applications</h5>
+                        <span class="badge bg-info">{{ pending_applications }}</span>
+                    </div>
+                    <p class="text-muted small">
+                        <i class="bi bi-info-circle me-2"></i>
+                        Review and manage job applications
+                    </p>
+                    <a href="/admin/careers/jobapplication/" class="btn btn-sm btn-primary mt-2">
+                        Manage <i class="bi bi-arrow-right ms-1"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Quick Links -->
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
+                <div class="glass-card">
+                    <h5 class="mb-3">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <a href="/admin/projects/project/" class="text-decoration-none">
+                                <i class="bi bi-arrow-right text-accent me-2"></i>Manage Projects
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="/admin/services/service/" class="text-decoration-none">
+                                <i class="bi bi-arrow-right text-accent me-2"></i>Manage Services
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="/admin/blog/blogpost/" class="text-decoration-none">
+                                <i class="bi bi-arrow-right text-accent me-2"></i>Manage Blog
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/admin/" class="text-decoration-none">
+                                <i class="bi bi-arrow-right text-accent me-2"></i>Admin Panel
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Our Services - Michael Aluminum and Glass Technology{% endblock %}
+
+{% block content %}
+
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container-lg px-4">
+        <div class="row align-items-center">
+            <div class="col-lg-8" data-aos="fade-up">
+                <h1>Our Services</h1>
+                <p class="lead">Comprehensive aluminum and glass solutions for every project</p>
+            </div>
+            <div class="col-lg-4 text-lg-end" data-aos="fade-left">
+                <a href="{% url 'quotations:request' %}" class="btn btn-primary btn-lg">
+                    <i class="bi bi-pencil-square me-2"></i>Request a Quote
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Grid -->
+<section class="section py-5">
+    <div class="container-lg px-4">
+
+        <div class="row g-4">
+            {% for service in services %}
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|stringformat:'d'|add:'100' }}">
+                <a href="{% url 'services:detail' service.slug %}" class="text-decoration-none">
+                    <div class="service-card h-100">
+
+                        <!-- Service Image -->
+                        <div class="service-card-img-wrapper">
+                            {% if service.image %}
+                            <img src="{{ service.image.url }}" alt="{{ service.title }}" class="service-card-img">
+                            {% endif %}
+                            <div class="service-card-icon-badge">
+                                <i class="{{ service.icon }}"></i>
+                            </div>
+                        </div>
+
+                        <!-- Service Body -->
+                        <div class="service-card-body">
+                            <h4 class="service-title">{{ service.title }}</h4>
+                            <p class="service-description">{{ service.short_description }}</p>
+
+                            <!-- Features preview -->
+                            {% if service.get_features_list %}
+                            <ul class="service-features-preview list-unstyled mb-3">
+                                {% for feature in service.get_features_list|slice:":3" %}
+                                <li><i class="bi bi-check2-circle me-2 text-accent"></i>{{ feature }}</li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+
+                            <span class="service-link">
+                                View Details <i class="bi bi-arrow-right ms-1"></i>
+                            </span>
+                        </div>
+
+                    </div>
+                </a>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <div class="alert alert-info text-center">No services found.</div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</section>
+
+<!-- Why Choose Us Strip -->
+<section class="py-5" style="background: linear-gradient(135deg, #0A2E6F 0%, #174EA6 100%);">
+    <div class="container-lg px-4">
+        <div class="row g-4 text-white text-center">
+            <div class="col-6 col-md-3" data-aos="fade-up">
+                <div class="why-strip-item">
+                    <i class="bi bi-award-fill fs-1 mb-2" style="color: #2D9CDB;"></i>
+                    <h5 class="mb-1">Premium Quality</h5>
+                    <p class="small opacity-75 mb-0">Only the best materials</p>
+                </div>
+            </div>
+            <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="100">
+                <div class="why-strip-item">
+                    <i class="bi bi-tools fs-1 mb-2" style="color: #2D9CDB;"></i>
+                    <h5 class="mb-1">Expert Craftsmanship</h5>
+                    <p class="small opacity-75 mb-0">Skilled professional team</p>
+                </div>
+            </div>
+            <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="200">
+                <div class="why-strip-item">
+                    <i class="bi bi-clock-history fs-1 mb-2" style="color: #2D9CDB;"></i>
+                    <h5 class="mb-1">On-Time Delivery</h5>
+                    <p class="small opacity-75 mb-0">We respect your deadlines</p>
+                </div>
+            </div>
+            <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="300">
+                <div class="why-strip-item">
+                    <i class="bi bi-headset fs-1 mb-2" style="color: #2D9CDB;"></i>
+                    <h5 class="mb-1">After-Sales Support</h5>
+                    <p class="small opacity-75 mb-0">We're always here for you</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="section py-5">
+    <div class="container-lg px-4">
+        <div class="glass-card text-center py-5" data-aos="fade-up">
+            <h2 class="mb-3">Need a Custom Solution?</h2>
+            <p class="text-muted lead mb-4">Tell us about your project and we'll deliver a tailored solution.</p>
+            <div class="d-flex gap-3 justify-content-center flex-wrap">
+                <a href="{% url 'quotations:request' %}" class="btn btn-primary btn-lg">
+                    <i class="bi bi-pencil-square me-2"></i>Request a Quote
+                </a>
+                <a href="{% url 'contact:contact' %}" class="btn btn-outline-primary btn-lg">
+                    <i class="bi bi-telephone me-2"></i>Contact Us
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

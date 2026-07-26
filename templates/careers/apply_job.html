@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Apply for {{ job.title }} - Michael Aluminum{% endblock %}
+
+{% block content %}
+
+<!-- Page Header -->
+<section class="hero" style="min-height: 40vh;">
+    <div class="container-lg px-4">
+        <div class="hero-content" data-aos="fade-up">
+            <h1>Apply for {{ job.title }}</h1>
+            <p class="lead">{{ job.location }}</p>
+        </div>
+    </div>
+</section>
+
+<!-- Application Form -->
+<section class="section py-5">
+    <div class="container-lg px-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-8" data-aos="fade-up">
+                <div class="glass-card">
+                    <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+                        {% csrf_token %}
+                        
+                        <!-- Personal Information -->
+                        <h4 class="mb-4 pb-3 border-bottom">Personal Information</h4>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="full_name" class="form-label">Full Name *</label>
+                                <input type="text" class="form-control" id="full_name" name="full_name" required>
+                                <div class="invalid-feedback">Please provide your full name.</div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">Email Address *</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                                <div class="invalid-feedback">Please provide a valid email.</div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Phone Number *</label>
+                            <input type="tel" class="form-control" id="phone" name="phone" required>
+                            <div class="invalid-feedback">Please provide your phone number.</div>
+                        </div>
+                        
+                        <!-- Application -->
+                        <h4 class="mb-4 pb-3 border-bottom mt-5">Application</h4>
+                        
+                        <div class="mb-3">
+                            <label for="cover_letter" class="form-label">Cover Letter *</label>
+                            <textarea class="form-control" id="cover_letter" name="cover_letter" rows="5" placeholder="Tell us why you're interested in this position..." required></textarea>
+                            <div class="invalid-feedback">Please provide a cover letter.</div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="cv" class="form-label">Upload CV/Resume *</label>
+                            <input type="file" class="form-control" id="cv" name="cv" accept=".pdf,.doc,.docx" required>
+                            <small class="text-muted">Accepted formats: PDF, DOC, DOCX. Max 5MB</small>
+                            <div class="invalid-feedback">Please upload your CV.</div>
+                        </div>
+                        
+                        <!-- Links -->
+                        <h4 class="mb-4 pb-3 border-bottom mt-5">Links (Optional)</h4>
+                        
+                        <div class="mb-3">
+                            <label for="portfolio_link" class="form-label">Portfolio Link</label>
+                            <input type="url" class="form-control" id="portfolio_link" name="portfolio_link" placeholder="https://yourportfolio.com">
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="linkedin_profile" class="form-label">LinkedIn Profile</label>
+                            <input type="url" class="form-control" id="linkedin_profile" name="linkedin_profile" placeholder="https://linkedin.com/in/yourprofile">
+                        </div>
+                        
+                        <!-- Terms -->
+                        <div class="form-check mb-4">
+                            <input class="form-check-input" type="checkbox" id="agree_terms" required>
+                            <label class="form-check-label" for="agree_terms">
+                                I agree that my data will be used to process my application
+                            </label>
+                            <div class="invalid-feedback">You must agree to proceed.</div>
+                        </div>
+                        
+                        <!-- Submit -->
+                        <button type="submit" class="btn btn-primary btn-lg w-100">
+                            <i class="bi bi-send me-2"></i>Submit Application
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Tips Section -->
+<section class="section py-5 bg-light">
+    <div class="container-lg px-4">
+        <h3 class="mb-5 text-center" data-aos="fade-up">Application Tips</h3>
+        
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                <div class="glass-card text-center">
+                    <div style="font-size: 2.5rem; color: #2D9CDB; margin-bottom: 1rem;">
+                        <i class="bi bi-file-check"></i>
+                    </div>
+                    <h6>Complete Profile</h6>
+                    <p class="text-muted small">Fill all required fields in your application</p>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                <div class="glass-card text-center">
+                    <div style="font-size: 2.5rem; color: #2D9CDB; margin-bottom: 1rem;">
+                        <i class="bi bi-file-earmark"></i>
+                    </div>
+                    <h6>Professional CV</h6>
+                    <p class="text-muted small">Use a clear and professional resume format</p>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                <div class="glass-card text-center">
+                    <div style="font-size: 2.5rem; color: #2D9CDB; margin-bottom: 1rem;">
+                        <i class="bi bi-chat-dots"></i>
+                    </div>
+                    <h6>Personal Touch</h6>
+                    <p class="text-muted small">Personalize your cover letter for the position</p>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
+                <div class="glass-card text-center">
+                    <div style="font-size: 2.5rem; color: #2D9CDB; margin-bottom: 1rem;">
+                        <i class="bi bi-speedometer2"></i>
+                    </div>
+                    <h6>Quick Response</h6>
+                    <p class="text-muted small">We'll review your application promptly</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

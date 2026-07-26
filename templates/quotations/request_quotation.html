@@ -1,0 +1,187 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Request Quotation - Michael Aluminum and Glass Technology{% endblock %}
+
+{% block content %}
+
+<!-- Page Header -->
+<section class="hero" style="min-height: 40vh;">
+    <div class="container-lg px-4">
+        <div class="hero-content" data-aos="fade-up">
+            <h1>Request a Quotation</h1>
+            <p class="lead">Get a free estimate for your project</p>
+        </div>
+    </div>
+</section>
+
+<!-- Quotation Form Section -->
+<section class="section py-5">
+    <div class="container-lg px-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-8" data-aos="fade-up">
+                <div class="glass-card">
+                    <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+                        {% csrf_token %}
+                        
+                        <!-- Personal Information -->
+                        <h4 class="mb-4 pb-3 border-bottom">Personal Information</h4>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="full_name" class="form-label">Full Name *</label>
+                                <input type="text" class="form-control" id="full_name" name="full_name" required>
+                                <div class="invalid-feedback">Please provide your full name.</div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="company" class="form-label">Company</label>
+                                <input type="text" class="form-control" id="company" name="company">
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">Email Address *</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                                <div class="invalid-feedback">Please provide a valid email.</div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="phone" class="form-label">Phone Number *</label>
+                                <input type="tel" class="form-control" id="phone" name="phone" required>
+                                <div class="invalid-feedback">Please provide your phone number.</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Project Details -->
+                        <h4 class="mb-4 pb-3 border-bottom mt-5">Project Details</h4>
+                        
+                        <div class="mb-3">
+                            <label for="service_needed" class="form-label">Service Needed *</label>
+                            <select class="form-select" id="service_needed" name="service_needed" required>
+                                <option value="">-- Select a Service --</option>
+                                <option value="LTZ Windows">LTZ Windows</option>
+                                <option value="Curtain Wall Systems">Curtain Wall Systems</option>
+                                <option value="Aluminum Cladding">Aluminum Cladding</option>
+                                <option value="Frameless Glass">Frameless Glass</option>
+                                <option value="Stainless Steel Works">Stainless Steel Works</option>
+                                <option value="Glass Doors">Glass Doors</option>
+                                <option value="Glass Partitions">Glass Partitions</option>
+                                <option value="Skylights">Skylights</option>
+                                <option value="Shower Enclosures">Shower Enclosures</option>
+                                <option value="Spider Glass Systems">Spider Glass Systems</option>
+                                <option value="Glass Railings">Glass Railings</option>
+                                <option value="Aluminum Composite Panels">Aluminum Composite Panels (ACP)</option>
+                                <option value="Custom Solution">Custom Solution</option>
+                            </select>
+                            <div class="invalid-feedback">Please select a service.</div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="project_location" class="form-label">Project Location *</label>
+                            <input type="text" class="form-control" id="project_location" name="project_location" placeholder="City, Country" required>
+                            <div class="invalid-feedback">Please provide project location.</div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="project_description" class="form-label">Project Description *</label>
+                            <textarea class="form-control" id="project_description" name="project_description" rows="4" placeholder="Describe your project..." required></textarea>
+                            <div class="invalid-feedback">Please provide a project description.</div>
+                        </div>
+                        
+                        <!-- Budget & Timeline -->
+                        <h4 class="mb-4 pb-3 border-bottom mt-5">Budget & Timeline</h4>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="budget" class="form-label">Budget Range</label>
+                                <input type="text" class="form-control" id="budget" name="budget" placeholder="e.g., $10,000 - $50,000">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="expected_completion_date" class="form-label">Expected Completion Date</label>
+                                <input type="date" class="form-control" id="expected_completion_date" name="expected_completion_date">
+                            </div>
+                        </div>
+                        
+                        <!-- File Uploads -->
+                        <h4 class="mb-4 pb-3 border-bottom mt-5">Attachments</h4>
+                        
+                        <div class="mb-3">
+                            <label for="drawings" class="form-label">Upload Drawings/Plans (PDF, Image)</label>
+                            <input type="file" class="form-control" id="drawings" name="drawings" accept=".pdf,.jpg,.jpeg,.png">
+                            <small class="text-muted">Max file size: 10MB</small>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="additional_files" class="form-label">Additional Files</label>
+                            <input type="file" class="form-control" id="additional_files" name="additional_files">
+                            <small class="text-muted">Max file size: 10MB</small>
+                        </div>
+                        
+                        <!-- Terms -->
+                        <div class="form-check mb-4">
+                            <input class="form-check-input" type="checkbox" id="agree_terms" required>
+                            <label class="form-check-label" for="agree_terms">
+                                I agree to the terms and conditions
+                            </label>
+                            <div class="invalid-feedback">You must agree to the terms.</div>
+                        </div>
+                        
+                        <!-- Submit -->
+                        <button type="submit" class="btn btn-primary btn-lg w-100">
+                            <i class="bi bi-send me-2"></i>Submit Quotation Request
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Info Section -->
+<section class="section py-5 bg-light">
+    <div class="container-lg px-4">
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                <div class="text-center">
+                    <div style="font-size: 2.5rem; color: #2D9CDB; margin-bottom: 1rem;">
+                        <i class="bi bi-lightning-charge"></i>
+                    </div>
+                    <h6>Fast Response</h6>
+                    <p class="text-muted small">Get a response within 24 hours</p>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                <div class="text-center">
+                    <div style="font-size: 2.5rem; color: #2D9CDB; margin-bottom: 1rem;">
+                        <i class="bi bi-free"></i>
+                    </div>
+                    <h6>Free Estimate</h6>
+                    <p class="text-muted small">No hidden charges or obligations</p>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                <div class="text-center">
+                    <div style="font-size: 2.5rem; color: #2D9CDB; margin-bottom: 1rem;">
+                        <i class="bi bi-shield-check"></i>
+                    </div>
+                    <h6>Professional Team</h6>
+                    <p class="text-muted small">Expert consultants ready to help</p>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
+                <div class="text-center">
+                    <div style="font-size: 2.5rem; color: #2D9CDB; margin-bottom: 1rem;">
+                        <i class="bi bi-telephone"></i>
+                    </div>
+                    <h6>Direct Support</h6>
+                    <p class="text-muted small">Call us anytime for inquiries</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

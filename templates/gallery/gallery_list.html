@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Gallery - Michael Aluminum and Glass Technology{% endblock %}
+
+{% block content %}
+
+<!-- Page Header -->
+<section class="hero" style="min-height: 40vh;">
+    <div class="container-lg px-4">
+        <div class="hero-content" data-aos="fade-up">
+            <h1>Gallery</h1>
+            <p class="lead">Visual showcase of our projects and installations</p>
+        </div>
+    </div>
+</section>
+
+<!-- Gallery Section -->
+<section class="section py-5">
+    <div class="container-lg px-4">
+        <!-- Category Filter -->
+        <div class="text-center mb-5" data-aos="fade-up">
+            <div class="btn-group flex-wrap" role="group">
+                <a href="{% url 'gallery:list' %}" class="btn btn-outline-primary {% if not selected_category %}active{% endif %}">
+                    All
+                </a>
+                {% for category in categories %}
+                <a href="?category={{ category.slug }}" class="btn btn-outline-primary {% if selected_category == category.slug %}active{% endif %}">
+                    {{ category.name }}
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <!-- Images Gallery -->
+        {% if images %}
+        <div class="mb-5">
+            <h4 class="mb-4" data-aos="fade-up">Images</h4>
+            <div class="gallery-container" data-aos="fade-up">
+                <div class="row g-3">
+                    {% for image in images %}
+                    <div class="col-md-6 col-lg-4">
+                        <a href="{{ image.image.url }}" data-lightgallery="item">
+                            <img src="{{ image.image.url }}" alt="{{ image.title }}" class="img-fluid rounded shadow" style="height: 250px; object-fit: cover; width: 100%; cursor: pointer;">
+                            <div class="mt-2">
+                                <h6 class="mb-1">{{ image.title }}</h6>
+                                <small class="text-muted">{{ image.category.name }}</small>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        
+        <!-- Videos Gallery -->
+        {% if videos %}
+        <div>
+            <h4 class="mb-4" data-aos="fade-up">Videos</h4>
+            <div class="row g-4">
+                {% for video in videos %}
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|stringformat:"d"|add:"100" }}">
+                    <div class="glass-card">
+                        <div class="ratio ratio-16x9 mb-3">
+                            <iframe src="https://www.youtube.com/embed/{{ video.video_url|urlizetrunc:50 }}" title="{{ video.title }}" allowfullscreen></iframe>
+                        </div>
+                        <h6>{{ video.title }}</h6>
+                        <p class="text-muted small">{{ video.category.name }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        
+        {% if not images and not videos %}
+        <div class="alert alert-info text-center">
+            No gallery items found for this category.
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock %}

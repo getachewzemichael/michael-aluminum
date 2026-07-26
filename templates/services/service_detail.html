@@ -1,0 +1,184 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ service.title }} - Michael Aluminum and Glass Technology{% endblock %}
+{% block meta_description %}{{ service.meta_description|default:service.short_description }}{% endblock %}
+
+{% block content %}
+
+<!-- Service Header -->
+{% if service.image %}
+<section class="page-header service-detail-header" style="background-image: url('{{ service.image.url }}');">
+{% else %}
+<section class="page-header service-detail-header">
+{% endif %}
+    <div class="service-detail-overlay"></div>
+    <div class="container-lg px-4 py-5 position-relative">
+        <div class="row align-items-center text-white">
+            <div class="col-lg-8" data-aos="fade-up">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="service-detail-icon me-3">
+                        <i class="{{ service.icon }}"></i>
+                    </div>
+                    <h1 class="mb-0" style="color:white; -webkit-text-fill-color:white;">{{ service.title }}</h1>
+                </div>
+                <p class="lead mb-0" style="color:rgba(255,255,255,0.9);">{{ service.short_description }}</p>
+            </div>
+            <div class="col-lg-4 text-lg-end mt-4 mt-lg-0" data-aos="fade-left">
+                <a href="{% url 'quotations:request' %}" class="btn btn-light btn-lg">
+                    <i class="bi bi-pencil-square me-2"></i>Request Quote
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Service Details -->
+<section class="section py-5">
+    <div class="container-lg px-4">
+        <div class="row g-5">
+
+            <!-- Main Content -->
+            <div class="col-lg-8">
+
+                <!-- Overview -->
+                <div class="glass-card mb-4" data-aos="fade-right">
+                    <h3 class="mb-3">Overview</h3>
+                    <p class="text-muted" style="line-height: 1.8;">{{ service.description }}</p>
+                </div>
+
+                <!-- Features -->
+                {% if service.get_features_list %}
+                <div class="glass-card mb-4" data-aos="fade-right">
+                    <h4 class="mb-4">Key Features</h4>
+                    <div class="row g-3">
+                        {% for feature in service.get_features_list %}
+                        <div class="col-md-6">
+                            <div class="feature-item d-flex align-items-start">
+                                <i class="bi bi-check-circle-fill text-accent me-2 mt-1" style="font-size: 1.1rem; color: #2D9CDB;"></i>
+                                <span>{{ feature }}</span>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Applications & Benefits -->
+                <div class="row g-4">
+                    {% if service.get_applications_list %}
+                    <div class="col-md-6" data-aos="fade-up">
+                        <div class="glass-card h-100">
+                            <h5 class="mb-3"><i class="bi bi-building me-2 text-accent" style="color: #2D9CDB;"></i>Applications</h5>
+                            <ul class="list-unstyled mb-0">
+                                {% for app in service.get_applications_list %}
+                                <li class="mb-2"><i class="bi bi-arrow-right-short text-muted me-1"></i>{{ app }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    {% if service.get_benefits_list %}
+                    <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="glass-card h-100">
+                            <h5 class="mb-3"><i class="bi bi-star me-2 text-accent" style="color: #2D9CDB;"></i>Benefits</h5>
+                            <ul class="list-unstyled mb-0">
+                                {% for benefit in service.get_benefits_list %}
+                                <li class="mb-2"><i class="bi bi-arrow-right-short text-muted me-1"></i>{{ benefit }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+
+                <!-- Quick Actions -->
+                <div class="glass-card mb-4" data-aos="fade-left">
+                    <h5 class="mb-3">Get Started</h5>
+                    <div class="d-grid gap-2">
+                        <a href="{% url 'quotations:request' %}" class="btn btn-primary">
+                            <i class="bi bi-pencil-square me-2"></i>Request Quote
+                        </a>
+                        <a href="{% url 'contact:contact' %}" class="btn btn-outline-primary">
+                            <i class="bi bi-telephone me-2"></i>Contact Us
+                        </a>
+                        <a href="{% url 'projects:list' %}" class="btn btn-outline-secondary">
+                            <i class="bi bi-images me-2"></i>View Projects
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Service Image -->
+                {% if service.image %}
+                <div class="service-detail-image mb-4" data-aos="fade-left" data-aos-delay="100">
+                    <img src="{{ service.image.url }}" alt="{{ service.title }}" class="img-fluid rounded shadow">
+                </div>
+                {% endif %}
+
+                <!-- Contact Info -->
+                <div class="glass-card" data-aos="fade-left" data-aos-delay="200">
+                    <h6 class="mb-3">Need Help?</h6>
+                    <p class="small text-muted mb-3">Our experts are ready to assist you.</p>
+                    <ul class="list-unstyled small mb-0">
+                        <li class="mb-2">
+                            <i class="bi bi-telephone me-2 text-accent" style="color: #2D9CDB;"></i>
+                            <a href="tel:+251962294612" class="text-decoration-none">+251-962-294-612</a>
+                        </li>
+                        <li class="mb-2">
+                            <i class="bi bi-envelope me-2 text-accent" style="color: #2D9CDB;"></i>
+                            <a href="mailto:michaeltadessemiki@gmail.com" class="text-decoration-none">Contact via Email</a>
+                        </li>
+                        <li>
+                            <i class="bi bi-whatsapp me-2 text-accent" style="color: #25D366;"></i>
+                            <a href="https://wa.me/251962294612" class="text-decoration-none" target="_blank">WhatsApp</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Related Services -->
+{% if related_services %}
+<section class="section py-5 bg-light">
+    <div class="container-lg px-4">
+        <h3 class="mb-4" data-aos="fade-up">Related Services</h3>
+        <div class="row g-4">
+            {% for related in related_services %}
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|stringformat:'d'|add:'100' }}">
+                <a href="{% url 'services:detail' related.slug %}" class="text-decoration-none">
+                    <div class="service-card h-100">
+                        <div class="service-card-img-wrapper">
+                            {% if related.image %}
+                            <img src="{{ related.image.url }}" alt="{{ related.title }}" class="service-card-img">
+                            {% endif %}
+                            <div class="service-card-icon-badge">
+                                <i class="{{ related.icon }}"></i>
+                            </div>
+                        </div>
+                        <div class="service-card-body">
+                            <h5 class="service-title">{{ related.title }}</h5>
+                            <p class="service-description">{{ related.short_description }}</p>
+                            <span class="service-link">
+                                View Details <i class="bi bi-arrow-right ms-1"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% endblock %}

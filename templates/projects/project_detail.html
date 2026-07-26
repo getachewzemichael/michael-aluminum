@@ -1,0 +1,217 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ project.title }} - Michael Aluminum and Glass Technology{% endblock %}
+{% block meta_description %}{{ project.meta_description|default:project.description }}{% endblock %}
+
+{% block content %}
+
+<!-- Project Banner -->
+{% if project.featured_image %}
+<section class="hero" style="min-height: 50vh; background-image: url('{{ project.featured_image.url }}'); background-size: cover; background-position: center;">
+{% else %}
+<section class="hero" style="min-height: 50vh; background: linear-gradient(135deg, #0A2E6F 0%, #174EA6 100%);">
+{% endif %}
+    <div style="background: rgba(0, 0, 0, 0.5); width: 100%; height: 100%; display: flex; align-items: flex-end; padding: 3rem 0;">
+        <div class="container-lg px-4 w-100">
+            <div class="hero-content text-white text-start">
+                <h1 style="color: white;">{{ project.title }}</h1>
+                <p class="lead" style="color: rgba(255, 255, 255, 0.9);">{{ project.description }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Project Details -->
+<section class="section py-5">
+    <div class="container-lg px-4">
+        <div class="row g-5">
+            <!-- Left Column -->
+            <div class="col-lg-8" data-aos="fade-right">
+                <!-- Basic Info -->
+                <div class="glass-card mb-4">
+                    <h4 class="mb-4">Project Overview</h4>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <p class="text-muted small">CLIENT</p>
+                            <p class="fw-600">{{ project.client }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="text-muted small">LOCATION</p>
+                            <p class="fw-600">{{ project.location }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="text-muted small">YEAR COMPLETED</p>
+                            <p class="fw-600">{{ project.year }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="text-muted small">DURATION</p>
+                            <p class="fw-600">{{ project.duration|default:"N/A" }}</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Gallery -->
+                <div class="mb-4" data-aos="fade-up">
+                    <h4 class="mb-4">Project Gallery</h4>
+                    <div class="project-lightgallery" id="project-gallery-{{ project.id }}">
+                        <div class="row g-3">
+
+                            {% if project.before_image %}
+                            <div class="col-6 col-md-4">
+                                <a href="{{ project.before_image.url }}" class="gallery-item d-block position-relative overflow-hidden rounded shadow">
+                                    <img src="{{ project.before_image.url }}" alt="Before - {{ project.title }}" class="gallery-thumb">
+                                    <span class="gallery-label">Before</span>
+                                </a>
+                            </div>
+                            {% endif %}
+
+                            {% if project.after_image %}
+                            <div class="col-6 col-md-4">
+                                <a href="{{ project.after_image.url }}" class="gallery-item d-block position-relative overflow-hidden rounded shadow">
+                                    <img src="{{ project.after_image.url }}" alt="After - {{ project.title }}" class="gallery-thumb">
+                                    <span class="gallery-label">After</span>
+                                </a>
+                            </div>
+                            {% endif %}
+
+                            {% if project.featured_image %}
+                            <div class="col-6 col-md-4">
+                                <a href="{{ project.featured_image.url }}" class="gallery-item d-block position-relative overflow-hidden rounded shadow">
+                                    <img src="{{ project.featured_image.url }}" alt="Featured - {{ project.title }}" class="gallery-thumb">
+                                    <span class="gallery-label">Featured</span>
+                                </a>
+                            </div>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Materials Used -->
+                {% if project.get_materials_list %}
+                <div class="glass-card mb-4" data-aos="fade-up">
+                    <h5 class="mb-3">Materials Used</h5>
+                    <div class="row g-2">
+                        {% for material in project.get_materials_list %}
+                        <div class="col-auto">
+                            <span class="badge bg-primary" style="background: linear-gradient(135deg, #0A2E6F, #2D9CDB) !important;">
+                                {{ material }}
+                            </span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+                
+                <!-- Challenges & Solutions -->
+                {% if project.challenges or project.solutions %}
+                <div class="glass-card mb-4" data-aos="fade-up">
+                    <div class="row g-4">
+                        {% if project.challenges %}
+                        <div class="col-md-6">
+                            <h5 class="mb-3">Challenges</h5>
+                            <p class="text-muted">{{ project.challenges }}</p>
+                        </div>
+                        {% endif %}
+                        
+                        {% if project.solutions %}
+                        <div class="col-md-6">
+                            <h5 class="mb-3">Solutions</h5>
+                            <p class="text-muted">{{ project.solutions }}</p>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endif %}
+                
+                <!-- Results -->
+                {% if project.results %}
+                <div class="glass-card mb-4" data-aos="fade-up">
+                    <h5 class="mb-3">Results</h5>
+                    <p class="text-muted">{{ project.results }}</p>
+                </div>
+                {% endif %}
+            </div>
+            
+            <!-- Right Sidebar -->
+            <div class="col-lg-4" data-aos="fade-left">
+                <!-- Client Feedback -->
+                {% if project.client_feedback %}
+                <div class="glass-card mb-4" data-aos="fade-left">
+                    <h5 class="mb-3"><i class="bi bi-chat-quote-fill me-2" style="color:#2D9CDB;"></i>Client Feedback</h5>
+                    {% if project.client_rating %}
+                    <div class="mb-2">
+                        {% for i in "12345" %}
+                            {% if forloop.counter <= project.client_rating %}
+                            <i class="bi bi-star-fill" style="color:#FFB800;"></i>
+                            {% else %}
+                            <i class="bi bi-star" style="color:#FFB800; opacity:0.4;"></i>
+                            {% endif %}
+                        {% endfor %}
+                        <small class="text-muted ms-1">({{ project.client_rating }}/5)</small>
+                    </div>
+                    {% endif %}
+                    <p class="text-muted fst-italic mb-0">"{{ project.client_feedback }}"</p>
+                </div>
+                {% endif %}
+                
+                <!-- Quick Info -->
+                <div class="glass-card mb-4">
+                    <h5 class="mb-3">Quick Info</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <strong>Category:</strong><br>
+                            <small class="text-muted">{{ project.category.name|default:"N/A" }}</small>
+                        </li>
+                        <li class="mb-2">
+                            <strong>Status:</strong><br>
+                            <small class="text-muted">{% if project.is_featured %}Featured{% else %}Active{% endif %}</small>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- CTA -->
+                <div class="glass-card mb-4">
+                    <h5 class="mb-3">Interested?</h5>
+                    <p class="text-muted small mb-3">Let's discuss how we can help with your project</p>
+                    <a href="{% url 'quotations:request' %}" class="btn btn-primary w-100">
+                        <i class="bi bi-pencil-square me-2"></i>Request Quote
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Related Projects -->
+{% if related_projects %}
+<section class="section py-5 bg-light">
+    <div class="container-lg px-4">
+        <h3 class="mb-4" data-aos="fade-up">Related Projects</h3>
+        
+        <div class="row g-4">
+            {% for related in related_projects %}
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|stringformat:"d"|add:"100" }}">
+                <a href="{% url 'projects:detail' related.slug %}" class="project-card">
+                    {% if related.featured_image %}
+                    <img src="{{ related.featured_image.url }}" alt="{{ related.title }}" class="project-image">
+                    {% endif %}
+                    <div class="project-overlay">
+                        <div class="project-info">
+                            <h3 class="h5">{{ related.title }}</h3>
+                            <p class="project-location">
+                                <i class="bi bi-geo-alt me-2"></i>{{ related.location }}
+                            </p>
+                            <small class="text-muted">{{ related.year }}</small>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% endblock %}

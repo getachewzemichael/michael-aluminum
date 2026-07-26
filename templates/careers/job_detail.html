@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ job.title }} - Careers at Michael Aluminum{% endblock %}
+
+{% block content %}
+
+<!-- Page Header -->
+<section class="hero" style="min-height: 40vh;">
+    <div class="container-lg px-4">
+        <div class="hero-content" data-aos="fade-up">
+            <h1>{{ job.title }}</h1>
+            <p class="lead">{{ job.department }}</p>
+        </div>
+    </div>
+</section>
+
+<!-- Job Details -->
+<section class="section py-5">
+    <div class="container-lg px-4">
+        <div class="row g-5">
+            <!-- Main Content -->
+            <div class="col-lg-8" data-aos="fade-right">
+                <!-- Job Info -->
+                <div class="glass-card mb-4">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <p class="text-muted small">EMPLOYMENT TYPE</p>
+                            <p class="fw-600">{{ job.employment_type|title }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="text-muted small">LOCATION</p>
+                            <p class="fw-600">{{ job.location }}</p>
+                        </div>
+                        {% if job.salary_range %}
+                        <div class="col-md-6">
+                            <p class="text-muted small">SALARY RANGE</p>
+                            <p class="fw-600">{{ job.salary_range }}</p>
+                        </div>
+                        {% endif %}
+                        <div class="col-md-6">
+                            <p class="text-muted small">POSTED DATE</p>
+                            <p class="fw-600">{{ job.posted_date|date:"M d, Y" }}</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Description -->
+                <div class="glass-card mb-4" data-aos="fade-up">
+                    <h4 class="mb-3">Job Description</h4>
+                    <p class="text-muted">{{ job.description }}</p>
+                </div>
+                
+                <!-- Requirements -->
+                {% if job.requirements %}
+                <div class="glass-card mb-4" data-aos="fade-up">
+                    <h4 class="mb-3">Requirements</h4>
+                    <ul class="list-unstyled">
+                        {% for req in job.requirements|split:"
+" %}
+                        {% if req.strip %}
+                        <li class="mb-2">
+                            <i class="bi bi-check-circle-fill text-accent me-2"></i>
+                            {{ req|escape }}
+                        </li>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+                
+                <!-- Responsibilities -->
+                {% if job.responsibilities %}
+                <div class="glass-card mb-4" data-aos="fade-up">
+                    <h4 class="mb-3">Responsibilities</h4>
+                    <ul class="list-unstyled">
+                        {% for resp in job.responsibilities|split:"
+" %}
+                        {% if resp.strip %}
+                        <li class="mb-2">
+                            <i class="bi bi-arrow-right text-accent me-2"></i>
+                            {{ resp|escape }}
+                        </li>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+                
+                <!-- Benefits -->
+                {% if job.benefits %}
+                <div class="glass-card mb-4" data-aos="fade-up">
+                    <h4 class="mb-3">Benefits</h4>
+                    <ul class="list-unstyled">
+                        {% for benefit in job.benefits|split:"
+" %}
+                        {% if benefit.strip %}
+                        <li class="mb-2">
+                            <i class="bi bi-star-fill text-warning me-2"></i>
+                            {{ benefit|escape }}
+                        </li>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+            
+            <!-- Sidebar -->
+            <div class="col-lg-4" data-aos="fade-left">
+                <!-- Apply Button -->
+                <div class="glass-card mb-4">
+                    <a href="{% url 'careers:apply' job.slug %}" class="btn btn-primary btn-lg w-100 mb-3">
+                        <i class="bi bi-send me-2"></i>Apply Now
+                    </a>
+                    <p class="text-muted small text-center mb-0">
+                        Deadline: {{ job.closing_date|date:"F d, Y"|default:"Open until filled" }}
+                    </p>
+                </div>
+                
+                <!-- Share -->
+                <div class="glass-card mb-4">
+                    <h6 class="mb-3">Share This Job</h6>
+                    <div class="d-flex gap-2">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={% request.build_absolute_uri %}" class="btn btn-sm btn-outline-primary" target="_blank">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="https://twitter.com/intent/tweet?url={% request.build_absolute_uri %}&text={{ job.title }}" class="btn btn-sm btn-outline-primary" target="_blank">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/sharing/share-offsite/?url={% request.build_absolute_uri %}" class="btn btn-sm btn-outline-primary" target="_blank">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div class="glass-card">
+                    <h6 class="mb-3">Other Opportunities</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2">
+                            <a href="{% url 'careers:list' %}" class="text-decoration-none">
+                                <i class="bi bi-arrow-left me-1"></i>View All Jobs
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'contact:contact' %}" class="text-decoration-none">
+                                <i class="bi bi-envelope me-1"></i>Contact HR
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Apply Section -->
+<section class="section py-5 bg-light">
+    <div class="container-lg px-4 text-center" data-aos="fade-up">
+        <h3 class="mb-4">Ready to Apply?</h3>
+        <p class="lead mb-4">Click below to submit your application</p>
+        <a href="{% url 'careers:apply' job.slug %}" class="btn btn-primary btn-lg">
+            <i class="bi bi-send me-2"></i>Submit Application
+        </a>
+    </div>
+</section>
+
+{% endblock %}
