@@ -4,6 +4,9 @@ set -e
 echo "Running migrations..."
 python manage.py migrate --noinput
 
+echo "Seeding all site data..."
+python manage.py seed_all_data
+
 echo "Seeding Why Choose Us cards..."
 python manage.py shell -c "
 from core.models import WhyChooseUsCard
