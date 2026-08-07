@@ -52,9 +52,9 @@
             <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|stringformat:"d"|add:"100" }}">
                 <a href="{% url 'projects:detail' project.slug %}" class="project-card text-decoration-none">
                     {% if project.featured_image %}
-                    <img src="{{ project.featured_image.url }}" alt="{{ project.title }}" class="project-image">
+                    <img loading="lazy" src="{{ project.featured_image.url }}" alt="{{ project.title }}" class="project-image">
                     {% elif project.static_featured %}
-                    <img src="{% static project.static_featured %}" alt="{{ project.title }}" class="project-image">
+                    <img loading="lazy" src="{% static project.static_featured %}" alt="{{ project.title }}" class="project-image">
                     {% endif %}
                     <!-- Always-visible title bar at bottom -->
                     <div class="project-title-bar">

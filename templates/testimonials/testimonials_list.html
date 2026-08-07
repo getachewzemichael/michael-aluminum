@@ -27,7 +27,7 @@
                 <div class="swiper-slide">
                     <div class="testimonial-card">
                         {% if testimonial.client_photo %}
-                        <img src="{{ testimonial.client_photo.url }}" alt="{{ testimonial.client_name }}" class="testimonial-avatar">
+                        <img loading="lazy" src="{{ testimonial.client_photo.url }}" alt="{{ testimonial.client_name }}" class="testimonial-avatar">
                         {% else %}
                         <div class="testimonial-avatar bg-secondary d-flex align-items-center justify-content-center" style="font-size: 2rem; color: white;">
                             <i class="bi bi-person"></i>
@@ -67,7 +67,7 @@
             <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|stringformat:"d"|add:"100" }}">
                 <div class="testimonial-card">
                     {% if testimonial.client_photo %}
-                    <img src="{{ testimonial.client_photo.url }}" alt="{{ testimonial.client_name }}" class="testimonial-avatar">
+                    <img loading="lazy" src="{{ testimonial.client_photo.url }}" alt="{{ testimonial.client_name }}" class="testimonial-avatar">
                     {% else %}
                     <div class="testimonial-avatar bg-secondary d-flex align-items-center justify-content-center" style="font-size: 2rem; color: white;">
                         <i class="bi bi-person"></i>

@@ -4,58 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#0A2E6F">
-    <meta name="description" content="{% block meta_description %}Michael Aluminum and Glass Technology - World-class architectural solutions{% endblock %}">
-    <meta name="keywords" content="{% block meta_keywords %}aluminum, glass, curtain wall, architectural{% endblock %}">
-
+    <meta name="description" content="{% block meta_description %}Michael Aluminum and Glass Technology - Premium aluminum, glass and stainless steel solutions in Ethiopia{% endblock %}">
+    <meta name="keywords" content="{% block meta_keywords %}aluminum, glass, curtain wall, ACP cladding, stainless steel, Ethiopia{% endblock %}">
     <title>{% block title %}Michael Aluminum and Glass Technology{% endblock %}</title>
 
-    <!-- Preconnect to speed up CDN connections -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Preconnect only CDN we actually use -->
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 
-    <!-- Google Fonts — preload critical font only -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-
-    <!-- Bootstrap CSS — critical, keep blocking -->
+    <!-- Bootstrap CSS — single critical CDN, everything else is local -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Bootstrap Icons — load async -->
+    <!-- All icons async — no render blocking -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" media="print" onload="this.media='all'">
-
-    <!-- Font Awesome — load async -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
     <noscript>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     </noscript>
 
-    <!-- AOS — load async -->
+    <!-- AOS, Swiper, LightGallery — async -->
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" media="print" onload="this.media='all'">
-
-    <!-- LightGallery — load async -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11.0.0/swiper-bundle.min.css" media="print" onload="this.media='all'">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.0/css/lightgallery-bundle.min.css" media="print" onload="this.media='all'">
 
-    <!-- Swiper — load async -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11.0.0/swiper-bundle.min.css" media="print" onload="this.media='all'">
-
-    <!-- Custom CSS — critical, load blocking -->
+    <!-- Custom CSS -->
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/theme.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/about.css' %}">
     <link rel="stylesheet" href="{% static 'css/footer.css' %}">
 
-    <!-- Inline critical CSS — prevents FOUC before stylesheets load -->
+    <!-- Critical inline CSS — prevents flash of unstyled content -->
     <style>
-        body { margin: 0; font-family: 'Poppins', sans-serif; background: #F5F7FA; }
-        [data-theme="dark"] body { background: #0f1419; }
-        .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1030; min-height: 80px; background: #0A2E6F; }
-        main { padding-top: 0; }
-        .hero, .page-header { opacity: 1 !important; }
-        /* Prevent invisible text flash */
-        h1, h2, h3 { color: #0A2E6F; }
-        [data-theme="dark"] h1, [data-theme="dark"] h2, [data-theme="dark"] h3 { color: #90cdf4; }
+        /* Fonts — system stack, no external request */
+        body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Poppins,Inter,sans-serif;background:#F5F7FA;color:#1a1a1a;}
+        [data-theme="dark"] body{background:#0f1419;color:#f0f0f0;}
+        /* Navbar placeholder height prevents layout shift */
+        .navbar{position:fixed;top:0;left:0;right:0;z-index:1030;min-height:80px;background:#0A2E6F;}
+        /* Hero visible immediately */
+        .hero,.page-header{opacity:1!important;visibility:visible!important;}
+        .hero h1,.page-header h1{opacity:1!important;}
+        /* Prevent image layout shift */
+        img{max-width:100%;height:auto;}
+        .project-image,.service-card-img,.gallery-thumb{object-fit:cover;}
     </style>
 
     {% block extra_css %}{% endblock %}

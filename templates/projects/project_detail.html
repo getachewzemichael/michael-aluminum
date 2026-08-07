@@ -62,14 +62,14 @@
                             {% if project.before_image %}
                             <div class="col-6 col-md-4">
                                 <a href="{{ project.before_image.url }}" class="gallery-item d-block position-relative overflow-hidden rounded shadow">
-                                    <img src="{{ project.before_image.url }}" alt="Before - {{ project.title }}" class="gallery-thumb">
+                                    <img loading="lazy" src="{{ project.before_image.url }}" alt="Before - {{ project.title }}" class="gallery-thumb">
                                     <span class="gallery-label">Before</span>
                                 </a>
                             </div>
                             {% elif project.static_before %}
                             <div class="col-6 col-md-4">
                                 <a href="{% static project.static_before %}" class="gallery-item d-block position-relative overflow-hidden rounded shadow">
-                                    <img src="{% static project.static_before %}" alt="Before - {{ project.title }}" class="gallery-thumb">
+                                    <img loading="lazy" src="{% static project.static_before %}" alt="Before - {{ project.title }}" class="gallery-thumb">
                                     <span class="gallery-label">Before</span>
                                 </a>
                             </div>
@@ -78,14 +78,14 @@
                             {% if project.after_image %}
                             <div class="col-6 col-md-4">
                                 <a href="{{ project.after_image.url }}" class="gallery-item d-block position-relative overflow-hidden rounded shadow">
-                                    <img src="{{ project.after_image.url }}" alt="After - {{ project.title }}" class="gallery-thumb">
+                                    <img loading="lazy" src="{{ project.after_image.url }}" alt="After - {{ project.title }}" class="gallery-thumb">
                                     <span class="gallery-label">After</span>
                                 </a>
                             </div>
                             {% elif project.static_after %}
                             <div class="col-6 col-md-4">
                                 <a href="{% static project.static_after %}" class="gallery-item d-block position-relative overflow-hidden rounded shadow">
-                                    <img src="{% static project.static_after %}" alt="After - {{ project.title }}" class="gallery-thumb">
+                                    <img loading="lazy" src="{% static project.static_after %}" alt="After - {{ project.title }}" class="gallery-thumb">
                                     <span class="gallery-label">After</span>
                                 </a>
                             </div>
@@ -94,14 +94,14 @@
                             {% if project.featured_image %}
                             <div class="col-6 col-md-4">
                                 <a href="{{ project.featured_image.url }}" class="gallery-item d-block position-relative overflow-hidden rounded shadow">
-                                    <img src="{{ project.featured_image.url }}" alt="Featured - {{ project.title }}" class="gallery-thumb">
+                                    <img loading="lazy" src="{{ project.featured_image.url }}" alt="Featured - {{ project.title }}" class="gallery-thumb">
                                     <span class="gallery-label">Featured</span>
                                 </a>
                             </div>
                             {% elif project.static_featured %}
                             <div class="col-6 col-md-4">
                                 <a href="{% static project.static_featured %}" class="gallery-item d-block position-relative overflow-hidden rounded shadow">
-                                    <img src="{% static project.static_featured %}" alt="Featured - {{ project.title }}" class="gallery-thumb">
+                                    <img loading="lazy" src="{% static project.static_featured %}" alt="Featured - {{ project.title }}" class="gallery-thumb">
                                     <span class="gallery-label">Featured</span>
                                 </a>
                             </div>
@@ -218,7 +218,7 @@
             <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|stringformat:"d"|add:"100" }}">
                 <a href="{% url 'projects:detail' related.slug %}" class="project-card">
                     {% if related.featured_image %}
-                    <img src="{{ related.featured_image.url }}" alt="{{ related.title }}" class="project-image">
+                    <img loading="lazy" src="{{ related.featured_image.url }}" alt="{{ related.title }}" class="project-image">
                     {% endif %}
                     <div class="project-overlay">
                         <div class="project-info">

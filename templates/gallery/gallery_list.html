@@ -41,7 +41,7 @@
                     {% for image in images %}
                     <div class="col-md-6 col-lg-4">
                         <a href="{{ image.image.url }}" data-lightgallery="item">
-                            <img src="{{ image.image.url }}" alt="{{ image.title }}" class="img-fluid rounded shadow" style="height: 250px; object-fit: cover; width: 100%; cursor: pointer;">
+                            <img loading="lazy" src="{{ image.image.url }}" alt="{{ image.title }}" class="img-fluid rounded shadow" style="height: 250px; object-fit: cover; width: 100%; cursor: pointer;">
                             <div class="mt-2">
                                 <h6 class="mb-1">{{ image.title }}</h6>
                                 <small class="text-muted">{{ image.category.name }}</small>

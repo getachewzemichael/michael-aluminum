@@ -89,9 +89,9 @@
                     <div class="service-card h-100">
                         <div class="service-card-img-wrapper">
                             {% if service.image %}
-                            <img src="{{ service.image.url }}" alt="{{ service.title }}" class="service-card-img">
+                            <img loading="lazy" src="{{ service.image.url }}" alt="{{ service.title }}" class="service-card-img">
                             {% elif service.static_image %}
-                            <img src="{% static service.static_image %}" alt="{{ service.title }}" class="service-card-img">
+                            <img loading="lazy" src="{% static service.static_image %}" alt="{{ service.title }}" class="service-card-img">
                             {% else %}
                             <div class="service-card-img" style="background:linear-gradient(135deg,#0A2E6F,#2D9CDB);display:flex;align-items:center;justify-content:center;">
                                 <i class="{{ service.icon }}" style="font-size:3rem;color:white;"></i>
@@ -135,9 +135,9 @@
             <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|stringformat:'d'|add:'100' }}">
                 <a href="{% url 'projects:detail' project.slug %}" class="project-card text-decoration-none">
                     {% if project.featured_image %}
-                    <img src="{{ project.featured_image.url }}" alt="{{ project.title }}" class="project-image">
+                    <img loading="lazy" src="{{ project.featured_image.url }}" alt="{{ project.title }}" class="project-image">
                     {% elif project.static_featured %}
-                    <img src="{% static project.static_featured %}" alt="{{ project.title }}" class="project-image">
+                    <img loading="lazy" src="{% static project.static_featured %}" alt="{{ project.title }}" class="project-image">
                     {% endif %}
                     <div class="project-title-bar">
                         {% if project.category %}
@@ -204,7 +204,7 @@
                 <div class="swiper-slide">
                     <div class="testimonial-card-home">
                         {% if testimonial.client_photo %}
-                        <img src="{{ testimonial.client_photo.url }}" alt="{{ testimonial.client_name }}" class="tcard-avatar">
+                        <img loading="lazy" src="{{ testimonial.client_photo.url }}" alt="{{ testimonial.client_name }}" class="tcard-avatar">
                         {% else %}
                         <div class="tcard-avatar tcard-avatar--fallback">
                             <i class="bi bi-person-fill"></i>
@@ -245,7 +245,7 @@
                 <a href="{% url 'blog:detail' post.slug %}" class="text-decoration-none">
                     <div class="glass-card h-100">
                         {% if post.featured_image %}
-                        <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" class="img-fluid rounded mb-3" style="height: 200px; object-fit: cover; width: 100%;">
+                        <img loading="lazy" src="{{ post.featured_image.url }}" alt="{{ post.title }}" class="img-fluid rounded mb-3" style="height: 200px; object-fit: cover; width: 100%;">
                         {% endif %}
                         
                         <p class="text-accent small mb-2">

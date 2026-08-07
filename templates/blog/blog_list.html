@@ -28,7 +28,7 @@
                         <a href="{% url 'blog:detail' post.slug %}" class="text-decoration-none">
                             <div class="glass-card h-100">
                                 {% if post.featured_image %}
-                                <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" class="img-fluid rounded mb-3" style="height: 200px; object-fit: cover; width: 100%;">
+                                <img loading="lazy" src="{{ post.featured_image.url }}" alt="{{ post.title }}" class="img-fluid rounded mb-3" style="height: 200px; object-fit: cover; width: 100%;">
                                 {% endif %}
                                 
                                 <p class="text-accent small mb-2">

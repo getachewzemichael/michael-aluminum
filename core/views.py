@@ -11,10 +11,12 @@ def home(request):
     context = {
         'company_info': CompanyInfo.objects.first(),
         'statistics': StatisticCard.objects.filter(is_active=True),
-        'services': Service.objects.filter(is_active=True)[:6],
-        'projects': Project.objects.filter(is_active=True, static_featured__isnull=False).exclude(static_featured='')[:6],
+        'services': Service.objects.select_related('category').filter(is_active=True)[:6],
+        'projects': Project.objects.select_related('category').filter(
+            is_active=True, static_featured__isnull=False
+        ).exclude(static_featured='')[:6],
         'testimonials': Testimonial.objects.filter(is_active=True)[:6],
-        'blog_posts': BlogPost.objects.filter(is_published=True)[:3],
+        'blog_posts': BlogPost.objects.select_related('category').filter(is_published=True)[:3],
         'why_choose_us': WhyChooseUsCard.objects.filter(is_active=True),
     }
     return render(request, 'core/home.html', context)

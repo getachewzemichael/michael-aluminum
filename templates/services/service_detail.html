@@ -117,7 +117,7 @@
                 <!-- Service Image -->
                 {% if service.image %}
                 <div class="service-detail-image mb-4" data-aos="fade-left" data-aos-delay="100">
-                    <img src="{{ service.image.url }}" alt="{{ service.title }}" class="img-fluid rounded shadow">
+                    <img loading="lazy" src="{{ service.image.url }}" alt="{{ service.title }}" class="img-fluid rounded shadow">
                 </div>
                 {% endif %}
 
@@ -159,7 +159,7 @@
                     <div class="service-card h-100">
                         <div class="service-card-img-wrapper">
                             {% if related.image %}
-                            <img src="{{ related.image.url }}" alt="{{ related.title }}" class="service-card-img">
+                            <img loading="lazy" src="{{ related.image.url }}" alt="{{ related.title }}" class="service-card-img">
                             {% endif %}
                             <div class="service-card-icon-badge">
                                 <i class="{{ related.icon }}"></i>
