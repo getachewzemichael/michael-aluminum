@@ -4,6 +4,22 @@ set -e
 echo "Running migrations..."
 python manage.py migrate --noinput
 
+echo "Seeding Why Choose Us cards..."
+python manage.py shell -c "
+from core.models import WhyChooseUsCard
+cards = [
+    {'title': 'Uncompromising Quality', 'description': 'Material quality ወይም workmanship ላይ አንደራደርም — We never cut corners on quality or craftsmanship.', 'icon': 'fa-award', 'order': 1},
+    {'title': 'Proven Reliability', 'description': 'በመቶዎች የሚቆጠሩ satisfied clients — Hundreds of clients across Ethiopia have trusted and commended our work.', 'icon': 'fa-handshake', 'order': 2},
+    {'title': 'Premium Materials', 'description': 'Top-grade aluminum, tempered glass እና stainless steel — ጥራታቸው ከፍ ያለ materials ብቻ እንጠቀማለን.', 'icon': 'fa-gem', 'order': 3},
+    {'title': 'Client-Centered', 'description': 'Every project — client ን ያስደሰተ outcome ለማምጣት tailored approach እንወስዳለን — your satisfaction is our goal.', 'icon': 'fa-users', 'order': 4},
+    {'title': 'On-Time Delivery', 'description': 'Deadline ን እናከብራለን — We respect your schedule and deliver every project on time without compromising quality.', 'icon': 'fa-clock', 'order': 5},
+    {'title': 'After-Sales Support', 'description': 'Installation ከተጠናቀቀ በኋላም — We provide full after-sales support to ensure lasting satisfaction.', 'icon': 'fa-headset', 'order': 6},
+]
+for c in cards:
+    WhyChooseUsCard.objects.update_or_create(title=c['title'], defaults={**c, 'is_active': True})
+print('Why Choose Us seeded.')
+"
+
 echo "Seeding statistics..."
 python manage.py shell -c "
 from core.models import StatisticCard
