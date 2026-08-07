@@ -1,13 +1,26 @@
+import os
+import shutil
 from django.core.management.base import BaseCommand
+from django.conf import settings
 from services.models import ServiceCategory, Service
 
 
 class Command(BaseCommand):
-    help = 'Seed services and service categories'
+    help = 'Seed services and service categories with images'
+
+    def copy_image(self, src_path, dest_filename):
+        dest_dir = os.path.join(settings.MEDIA_ROOT, 'services')
+        os.makedirs(dest_dir, exist_ok=True)
+        dest_path = os.path.join(dest_dir, dest_filename)
+        if os.path.exists(src_path):
+            shutil.copy2(src_path, dest_path)
+            return f'services/{dest_filename}'
+        return None
 
     def handle(self, *args, **kwargs):
+        static_images = os.path.join(settings.BASE_DIR, 'static', 'images')
 
-        # ── Create categories ──────────────────────────────────
+        # ── Categories ─────────────────────────────────────────
         cat_aluminum, _ = ServiceCategory.objects.get_or_create(
             name='Aluminum Works',
             defaults={'description': 'Premium aluminum fabrication and installation', 'order': 1}
@@ -24,18 +37,18 @@ class Command(BaseCommand):
             name='Facade Systems',
             defaults={'description': 'Curtain wall and ACP cladding systems', 'order': 4}
         )
-
-        self.stdout.write('Categories created.')
+        self.stdout.write('Categories ready.')
 
         # ── Services ───────────────────────────────────────────
         services = [
-            # ── Aluminum Works ──
             {
                 'title': 'Handrail',
                 'slug': 'handrail',
                 'category': cat_aluminum,
+                'image_src': os.path.join(static_images, 'Category 1 Handrail', 'photo_5979042982746853370_y.jpg'),
+                'image_dest': 'service_handrail.jpg',
                 'short_description': 'Elegant and durable handrail systems for staircases, balconies, and walkways.',
-                'description': 'We design and install high-quality handrail systems for both interior and exterior use. Our handrails combine safety with modern aesthetics, available in various finishes.',
+                'description': 'We design and install high-quality handrail systems for both interior and exterior use. Our handrails combine safety with modern aesthetics.',
                 'icon': 'bi bi-ladder',
                 'features': 'Custom design and fabrication\nPowder-coated and anodized finishes\nResidential and commercial applications\nSafety-compliant installation\nLow maintenance materials',
                 'applications': 'Staircases\nBalconies\nRamps and walkways\nCommercial buildings',
@@ -46,20 +59,22 @@ class Command(BaseCommand):
                 'title': 'LTZ Windows and Doors',
                 'slug': 'ltz-windows-doors',
                 'category': cat_aluminum,
+                'image_src': os.path.join(static_images, 'category 2 LTZ windows and doors', 'photo_5979042982746853392_y.jpg'),
+                'image_dest': 'service_ltz.jpg',
                 'short_description': 'High-performance aluminum windows and doors combining energy efficiency with modern design.',
-                'description': 'Our LTZ windows and doors are engineered for maximum performance, offering superior insulation, security, and aesthetic value for residential and commercial projects.',
+                'description': 'Our LTZ windows and doors are engineered for maximum performance, offering superior insulation, security, and aesthetic value.',
                 'icon': 'bi bi-door-open',
                 'features': 'Custom sizing and profiles\nDouble and triple glazing options\nThermal break technology\nMulti-point locking systems\nWide range of finishes',
                 'applications': 'Residential homes\nOffice buildings\nHotels and hospitality\nRetail spaces',
                 'benefits': 'Improved energy efficiency\nEnhanced security\nNoise reduction\nLow maintenance',
                 'order': 2,
             },
-
-            # ── Glass Works ──
             {
                 'title': 'Frameless and Glass Partition',
                 'slug': 'frameless-glass-partition',
                 'category': cat_glass,
+                'image_src': os.path.join(static_images, 'Category 4 Frameless and Glass Partition', 'photo_5979042982746853413_y.jpg'),
+                'image_dest': 'service_glass_partition.jpg',
                 'short_description': 'Elegant frameless glass partitions creating open, light-filled spaces without sacrificing privacy.',
                 'description': 'Transform your interior spaces with our frameless and semi-frameless glass partition systems using toughened safety glass.',
                 'icon': 'bi bi-columns-gap',
@@ -68,12 +83,12 @@ class Command(BaseCommand):
                 'benefits': 'Maximizes natural light\nCreates modern open spaces\nAcoustic privacy options\nEasy to clean and maintain',
                 'order': 3,
             },
-
-            # ── Stainless Steel Works ──
             {
                 'title': 'Stainless Steel Handrail',
                 'slug': 'stainless-steel-handrail',
                 'category': cat_steel,
+                'image_src': os.path.join(static_images, 'Category 3 Stainless Steal Handrail', 'photo_5979042982746853405_y.jpg'),
+                'image_dest': 'service_ss_handrail.jpg',
                 'short_description': 'Premium stainless steel handrail systems delivering a sleek, modern look with exceptional strength.',
                 'description': 'Our stainless steel handrail systems offer a perfect blend of elegance and durability, fabricated from high-grade stainless steel.',
                 'icon': 'bi bi-gem',
@@ -82,12 +97,12 @@ class Command(BaseCommand):
                 'benefits': 'Rust and corrosion resistant\nPremium appearance\nMinimal maintenance\nHigh strength and durability',
                 'order': 4,
             },
-
-            # ── Facade Systems ──
             {
                 'title': 'ACP Cladding',
                 'slug': 'acp-cladding',
                 'category': cat_facade,
+                'image_src': os.path.join(static_images, 'Category 5 ACP Cladding', 'photo_5979042982746853418_y.jpg'),
+                'image_dest': 'service_acp.jpg',
                 'short_description': 'Aluminum Composite Panel cladding for stunning building facades with superior weather protection.',
                 'description': 'ACP cladding dramatically transforms building facades providing excellent weather resistance, fire protection, and insulation.',
                 'icon': 'bi bi-bricks',
@@ -100,8 +115,10 @@ class Command(BaseCommand):
                 'title': 'Curtain Wall Facade',
                 'slug': 'curtain-wall-facade',
                 'category': cat_facade,
+                'image_src': os.path.join(static_images, 'Category 6 Curtain Wall Facade', 'photo_5979042982746853452_y.jpg'),
+                'image_dest': 'service_curtain_wall.jpg',
                 'short_description': 'High-performance curtain wall systems creating iconic glass facades for modern commercial buildings.',
-                'description': 'Our curtain wall facade systems deliver stunning all-glass building exteriors that combine architectural beauty with superior structural performance.',
+                'description': 'Our curtain wall facade systems deliver stunning all-glass building exteriors combining architectural beauty with superior structural performance.',
                 'icon': 'bi bi-building',
                 'features': 'Unitized and stick-built systems\nHigh-performance thermal insulation\nStructural silicone glazing\nCustom aluminum profiles\nWind and water tested',
                 'applications': 'High-rise office towers\nHotel buildings\nGovernment buildings\nCommercial complexes',
@@ -111,6 +128,8 @@ class Command(BaseCommand):
         ]
 
         for data in services:
+            image_path = self.copy_image(data['image_src'], data['image_dest'])
+
             service, created = Service.objects.update_or_create(
                 slug=data['slug'],
                 defaults={
@@ -127,8 +146,13 @@ class Command(BaseCommand):
                     'is_featured': True,
                 }
             )
-            status = 'Created' if created else 'Updated'
-            self.stdout.write(f'  {status}: {service.title} [{service.category.name}]')
+
+            if image_path:
+                service.image = image_path
+                service.save()
+                self.stdout.write(f'  {"Created" if created else "Updated"}: {service.title} [{service.category.name}] — image OK')
+            else:
+                self.stdout.write(self.style.WARNING(f'  {"Created" if created else "Updated"}: {service.title} [{service.category.name}] — image NOT FOUND'))
 
         self.stdout.write(self.style.SUCCESS(
             f'\nDone! {Service.objects.count()} services across {ServiceCategory.objects.count()} categories.'
