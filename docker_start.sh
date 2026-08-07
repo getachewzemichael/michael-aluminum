@@ -4,6 +4,9 @@ set -e
 echo "Running migrations..."
 python manage.py migrate --noinput
 
+echo "Seeding services..."
+python manage.py seed_services
+
 echo "Creating superuser..."
 python manage.py shell -c "
 from django.contrib.auth import get_user_model
