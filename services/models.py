@@ -27,6 +27,7 @@ class Service(models.Model):
     
     # Media
     image = models.ImageField(upload_to="services/", blank=True, null=True)
+    static_image = models.CharField(max_length=255, blank=True, help_text="Path relative to static folder e.g. images/Category 1 Handrail/photo.jpg")
     icon = models.CharField(max_length=100, help_text="Bootstrap icon class e.g. bi bi-building", blank=True)
     
     # Details

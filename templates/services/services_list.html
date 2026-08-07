@@ -36,6 +36,12 @@
                         <div class="service-card-img-wrapper">
                             {% if service.image %}
                             <img src="{{ service.image.url }}" alt="{{ service.title }}" class="service-card-img">
+                            {% elif service.static_image %}
+                            <img src="{% static service.static_image %}" alt="{{ service.title }}" class="service-card-img">
+                            {% else %}
+                            <div class="service-card-img" style="background:linear-gradient(135deg,#0A2E6F,#2D9CDB);display:flex;align-items:center;justify-content:center;">
+                                <i class="{{ service.icon }}" style="font-size:3rem;color:white;"></i>
+                            </div>
                             {% endif %}
                             <div class="service-card-icon-badge">
                                 <i class="{{ service.icon }}"></i>
