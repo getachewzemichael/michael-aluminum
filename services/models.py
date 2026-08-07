@@ -26,7 +26,7 @@ class Service(models.Model):
     short_description = models.CharField(max_length=300)
     
     # Media
-    image = models.ImageField(upload_to="services/")
+    image = models.ImageField(upload_to="services/", blank=True, null=True)
     icon = models.CharField(max_length=100, help_text="Font Awesome icon class")
     
     # Details
