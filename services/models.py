@@ -22,15 +22,15 @@ class Service(models.Model):
     category = models.ForeignKey(ServiceCategory, on_delete=models.SET_NULL, null=True, blank=True)
     title = models.CharField(max_length=200)
     slug = models.SlugField(unique=True)
-    description = models.TextField()
-    short_description = models.CharField(max_length=300)
+    description = models.TextField(blank=True)
+    short_description = models.CharField(max_length=300, blank=True)
     
     # Media
     image = models.ImageField(upload_to="services/", blank=True, null=True)
-    icon = models.CharField(max_length=100, help_text="Font Awesome icon class")
+    icon = models.CharField(max_length=100, help_text="Bootstrap icon class e.g. bi bi-building", blank=True)
     
     # Details
-    features = models.TextField(help_text="Features separated by newline")
+    features = models.TextField(help_text="Features separated by newline", blank=True)
     applications = models.TextField(help_text="Applications separated by newline", blank=True)
     benefits = models.TextField(help_text="Benefits separated by newline", blank=True)
     
