@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.views.decorators.cache import cache_page
 from .models import CompanyInfo, StatisticCard, WhyChooseUsCard
 from services.models import Service
 from projects.models import Project
@@ -7,14 +6,13 @@ from testimonials.models import Testimonial
 from blog.models import BlogPost
 
 
-@cache_page(60 * 15)  # Cache for 15 minutes
 def home(request):
     """Home page with hero, services, projects, and testimonials"""
     context = {
         'company_info': CompanyInfo.objects.first(),
         'statistics': StatisticCard.objects.filter(is_active=True),
-        'services': Service.objects.filter(is_active=True, is_featured=True)[:6],
-        'projects': Project.objects.filter(is_active=True, is_featured=True).exclude(featured_image__isnull=True).exclude(featured_image='')[:6],
+        'services': Service.objects.filter(is_active=True)[:6],
+        'projects': Project.objects.filter(is_active=True).exclude(featured_image__isnull=True).exclude(featured_image='')[:6],
         'testimonials': Testimonial.objects.filter(is_active=True)[:6],
         'blog_posts': BlogPost.objects.filter(is_published=True)[:3],
         'why_choose_us': WhyChooseUsCard.objects.filter(is_active=True),
