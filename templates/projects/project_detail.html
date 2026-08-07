@@ -9,6 +9,8 @@
 <!-- Project Banner -->
 {% if project.featured_image %}
 <section class="hero" style="min-height: 50vh; background-image: url('{{ project.featured_image.url }}'); background-size: cover; background-position: center;">
+{% elif project.static_featured %}
+<section class="hero" style="min-height: 50vh; background-image: url('{% static project.static_featured %}'); background-size: cover; background-position: center;">
 {% else %}
 <section class="hero" style="min-height: 50vh; background: linear-gradient(135deg, #0A2E6F 0%, #174EA6 100%);">
 {% endif %}
@@ -64,6 +66,13 @@
                                     <span class="gallery-label">Before</span>
                                 </a>
                             </div>
+                            {% elif project.static_before %}
+                            <div class="col-6 col-md-4">
+                                <a href="{% static project.static_before %}" class="gallery-item d-block position-relative overflow-hidden rounded shadow">
+                                    <img src="{% static project.static_before %}" alt="Before - {{ project.title }}" class="gallery-thumb">
+                                    <span class="gallery-label">Before</span>
+                                </a>
+                            </div>
                             {% endif %}
 
                             {% if project.after_image %}
@@ -73,12 +82,26 @@
                                     <span class="gallery-label">After</span>
                                 </a>
                             </div>
+                            {% elif project.static_after %}
+                            <div class="col-6 col-md-4">
+                                <a href="{% static project.static_after %}" class="gallery-item d-block position-relative overflow-hidden rounded shadow">
+                                    <img src="{% static project.static_after %}" alt="After - {{ project.title }}" class="gallery-thumb">
+                                    <span class="gallery-label">After</span>
+                                </a>
+                            </div>
                             {% endif %}
 
                             {% if project.featured_image %}
                             <div class="col-6 col-md-4">
                                 <a href="{{ project.featured_image.url }}" class="gallery-item d-block position-relative overflow-hidden rounded shadow">
                                     <img src="{{ project.featured_image.url }}" alt="Featured - {{ project.title }}" class="gallery-thumb">
+                                    <span class="gallery-label">Featured</span>
+                                </a>
+                            </div>
+                            {% elif project.static_featured %}
+                            <div class="col-6 col-md-4">
+                                <a href="{% static project.static_featured %}" class="gallery-item d-block position-relative overflow-hidden rounded shadow">
+                                    <img src="{% static project.static_featured %}" alt="Featured - {{ project.title }}" class="gallery-thumb">
                                     <span class="gallery-label">Featured</span>
                                 </a>
                             </div>

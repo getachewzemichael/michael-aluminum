@@ -10,7 +10,7 @@ def projects_list(request):
     category = request.GET.get('category')
     search = request.GET.get('q')
     
-    projects = Project.objects.filter(is_active=True).exclude(featured_image__isnull=True).exclude(featured_image='')
+    projects = Project.objects.filter(is_active=True).exclude(static_featured='')
     
     if category:
         projects = projects.filter(category__slug=category)
@@ -39,7 +39,7 @@ def project_detail(request, slug):
     related_projects = Project.objects.filter(
         is_active=True,
         category=project.category
-    ).exclude(id=project.id).exclude(featured_image__isnull=True).exclude(featured_image='')[:3]
+    ).exclude(id=project.id).exclude(static_featured='')[:3]
     
     context = {
         'project': project,

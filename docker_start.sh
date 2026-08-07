@@ -4,6 +4,9 @@ set -e
 echo "Running migrations..."
 python manage.py migrate --noinput
 
+echo "Seeding projects..."
+python manage.py seed_projects
+
 echo "Seeding services..."
 python manage.py seed_services
 

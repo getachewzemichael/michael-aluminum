@@ -27,9 +27,14 @@ class Project(models.Model):
     description = models.TextField()
     
     # Images
-    featured_image = models.ImageField(upload_to="projects/featured/")
-    before_image = models.ImageField(upload_to="projects/before/", blank=True)
-    after_image = models.ImageField(upload_to="projects/after/")
+    featured_image = models.ImageField(upload_to="projects/featured/", blank=True, null=True)
+    before_image = models.ImageField(upload_to="projects/before/", blank=True, null=True)
+    after_image = models.ImageField(upload_to="projects/after/", blank=True, null=True)
+
+    # Static image paths (persistent on Render free plan)
+    static_featured = models.CharField(max_length=255, blank=True)
+    static_before = models.CharField(max_length=255, blank=True)
+    static_after = models.CharField(max_length=255, blank=True)
     
     # Project Details
     location = models.CharField(max_length=300)

@@ -12,7 +12,7 @@ def home(request):
         'company_info': CompanyInfo.objects.first(),
         'statistics': StatisticCard.objects.filter(is_active=True),
         'services': Service.objects.filter(is_active=True)[:6],
-        'projects': Project.objects.filter(is_active=True).exclude(featured_image__isnull=True).exclude(featured_image='')[:6],
+        'projects': Project.objects.filter(is_active=True, static_featured__isnull=False).exclude(static_featured='')[:6],
         'testimonials': Testimonial.objects.filter(is_active=True)[:6],
         'blog_posts': BlogPost.objects.filter(is_published=True)[:3],
         'why_choose_us': WhyChooseUsCard.objects.filter(is_active=True),
