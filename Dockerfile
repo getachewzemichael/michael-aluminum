@@ -17,6 +17,9 @@ COPY . .
 
 RUN python manage.py collectstatic --noinput
 
+COPY docker_start.sh /docker_start.sh
+RUN chmod +x /docker_start.sh
+
 EXPOSE 10000
 
-CMD ["sh", "-c", "python manage.py migrate --noinput && gunicorn MichaelAluminum.wsgi:application --bind 0.0.0.0:${PORT:-10000} --workers 2 --timeout 120"]
+CMD ["/bin/sh", "/docker_start.sh"]
