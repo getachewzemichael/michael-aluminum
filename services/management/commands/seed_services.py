@@ -148,6 +148,7 @@ class Command(BaseCommand):
                     'applications': data.get('applications', ''),
                     'benefits': data.get('benefits', ''),
                     'static_image': data.get('static_image', ''),
+                    'image': None,  # clear old media path — use static_image instead
                     'order': data['order'],
                     'is_active': True,
                     'is_featured': True,
@@ -155,11 +156,13 @@ class Command(BaseCommand):
             )
 
             if image_path:
-                service.image = image_path
-                service.save()
-                self.stdout.write(f'  {"Created" if created else "Updated"}: {service.title} [{service.category.name}] — image OK')
+                self.stdout.write(f'  {"Created" if created else "Updated"}: {service.title} [{service.category.name}] — static image set')
             else:
-                self.stdout.write(self.style.WARNING(f'  {"Created" if created else "Updated"}: {service.title} [{service.category.name}] — image NOT FOUND'))
+                self.stdout.write(self.style.WARNING(f'  {"Created" if created else "Updated"}: {service.title} [{service.category.name}] — no image'))
+
+        self.stdout.write(self.style.SUCCESS(
+            f'\nDone! {Service.objects.count()} services across {ServiceCategory.objects.count()} categories.'
+        ))
 
         self.stdout.write(self.style.SUCCESS(
             f'\nDone! {Service.objects.count()} services across {ServiceCategory.objects.count()} categories.'
