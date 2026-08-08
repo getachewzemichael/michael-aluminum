@@ -48,10 +48,13 @@ python manage.py shell -c "
 from django.contrib.auth import get_user_model
 User = get_user_model()
 if not User.objects.filter(username='admin').exists():
-    User.objects.create_superuser('admin', 'michaeltadessemiki@gmail.com', 'admin123')
+    User.objects.create_superuser('admin', 'michaeltadessemiki@gmail.com', 'Michael@2026#Secure!')
     print('Superuser created.')
 else:
-    print('Superuser already exists.')
+    user = User.objects.get(username='admin')
+    user.set_password('Michael@2026#Secure!')
+    user.save()
+    print('Superuser password updated.')
 "
 
 echo "Starting server..."
