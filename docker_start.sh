@@ -43,18 +43,22 @@ python manage.py seed_projects
 echo "Seeding services..."
 python manage.py seed_services
 
-echo "Creating superuser..."
+echo "Creating/Updating superuser password..."
 python manage.py shell -c "
 from django.contrib.auth import get_user_model
 User = get_user_model()
-if not User.objects.filter(username='admin').exists():
-    User.objects.create_superuser('admin', 'michaeltadessemiki@gmail.com', 'Michael@2026#Secure!')
-    print('Superuser created.')
-else:
-    user = User.objects.get(username='admin')
-    user.set_password('Michael@2026#Secure!')
-    user.save()
-    print('Superuser password updated.')
+user, created = User.objects.get_or_create(
+    username='admin',
+    defaults={'email': 'michaeltadessemiki@gmail.com', 'is_staff': True, 'is_superuser': True}
+)
+user.set_password('Michael@2026#Secure!')
+user.is_staff = True
+user.is_superuser = True
+user.is_active = True
+user.save()
+print('Password set to: Michael@2026#Secure!')
+print('Admin user active:', user.is_active)
+print('Is superuser:', user.is_superuser)
 "
 
 echo "Starting server..."
